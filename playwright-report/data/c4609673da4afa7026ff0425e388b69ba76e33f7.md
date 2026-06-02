@@ -1,0 +1,563 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: home.spec.js >> Home Page E2E & Visual Tests >> Visual Regression Testing (Snapshot Compare)
+- Location: e2e\home.spec.js:42:3
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - region "Notifications alt+T"
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "Villa Kampung Gunung" [ref=e5] [cursor=pointer]:
+          - /url: "#hero"
+          - img [ref=e6]
+          - generic [ref=e9]: Villa Kampung Gunung
+        - generic [ref=e10]:
+          - link "Beranda" [ref=e11] [cursor=pointer]:
+            - /url: "#hero"
+          - link "Villa" [ref=e12] [cursor=pointer]:
+            - /url: "#villas"
+          - link "Wisata" [ref=e13] [cursor=pointer]:
+            - /url: "#wisata"
+          - link "Kuliner" [ref=e14] [cursor=pointer]:
+            - /url: "#kuliner"
+          - link "Ulasan" [ref=e15] [cursor=pointer]:
+            - /url: "#reviews"
+          - button "Kelola Booking" [ref=e16]:
+            - img [ref=e17]
+            - text: Kelola Booking
+          - link "WhatsApp" [ref=e19] [cursor=pointer]:
+            - /url: https://wa.me/628112333838
+            - img [ref=e20]
+            - text: WhatsApp
+    - generic [ref=e22]:
+      - img "Mountain View Resort" [ref=e23]
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - img [ref=e27]
+          - generic [ref=e30]: Kuningan, Jawa Barat
+        - heading "Villa Kampung Gunung" [level=1] [ref=e31]:
+          - text: Villa Kampung
+          - text: Gunung
+        - paragraph [ref=e32]: Rasakan ketenangan alam pegunungan dengan kenyamanan premium di tengah hutan tropis
+        - generic [ref=e33]:
+          - generic [ref=e34] [cursor=pointer]:
+            - img [ref=e35]
+            - generic [ref=e37]: 4.8 Rating
+          - generic [ref=e38] [cursor=pointer]:
+            - img [ref=e39]
+            - generic [ref=e41]: 500+ Ulasan
+          - generic [ref=e42] [cursor=pointer]:
+            - img [ref=e43]
+            - generic [ref=e46]: Instagram Worthy
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]: Check-in
+            - button "Pilih tanggal" [ref=e51]:
+              - generic [ref=e52] [cursor=pointer]:
+                - img [ref=e53]
+                - text: Pilih tanggal
+          - generic [ref=e55]:
+            - generic [ref=e56]: Check-out
+            - button "Pilih tanggal" [ref=e57]:
+              - generic [ref=e58] [cursor=pointer]:
+                - img [ref=e59]
+                - text: Pilih tanggal
+          - generic [ref=e61]:
+            - generic [ref=e62]: Jumlah Tamu
+            - generic [ref=e63] [cursor=pointer]:
+              - img [ref=e64]
+              - combobox [ref=e69]:
+                - option "1 Tamu"
+                - option "2 Tamu" [selected]
+                - option "3 Tamu"
+                - option "4 Tamu"
+                - option "5 Tamu"
+                - option "6 Tamu"
+          - button "Cari Villa" [ref=e70]:
+            - img
+            - text: Cari Villa
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - heading "Pilihan Villa Kami" [level=2] [ref=e73]
+        - paragraph [ref=e74]: Temukan hunian yang sempurna untuk liburan Anda di tengah keindahan alam pegunungan
+      - generic [ref=e75]:
+        - generic [ref=e76] [cursor=pointer]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - img "Villa Profile" [ref=e79]
+              - img "Villa Profile" [ref=e80]
+              - img "Villa Profile" [ref=e81]
+            - generic [ref=e83]: Lihat Detail Kamar
+            - button [ref=e84]:
+              - img [ref=e85]
+            - button [ref=e87]:
+              - img [ref=e88]
+            - generic [ref=e94]:
+              - img [ref=e95]
+              - text: Max 2 tamu
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - heading "Single Room" [level=3] [ref=e102]
+              - paragraph [ref=e103]: Kamar nyaman untuk 2 orang dengan pemandangan taman tropis yang asri. Dilengkapi AC, TV, dan kamar mandi dalam.
+              - generic [ref=e104]:
+                - img [ref=e105]
+                - generic [ref=e108]: "Tersedia: 3 Kamar"
+              - generic [ref=e109]:
+                - generic [ref=e110]: AC
+                - generic [ref=e111]: TV
+                - generic [ref=e112]: WiFi
+                - generic [ref=e113]: Kamar Mandi Dalam
+            - generic [ref=e114]:
+              - generic [ref=e115]:
+                - text: Rp 350.000
+                - generic [ref=e116]: / malam
+              - button "Pesan" [ref=e117]
+        - generic [ref=e118] [cursor=pointer]:
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - img "Villa Profile" [ref=e121]
+              - img "Villa Profile" [ref=e122]
+              - img "Villa Profile" [ref=e123]
+            - generic [ref=e125]: Lihat Detail Kamar
+            - button [ref=e126]:
+              - img [ref=e127]
+            - button [ref=e129]:
+              - img [ref=e130]
+            - generic [ref=e136]:
+              - img [ref=e137]
+              - text: Max 4 tamu
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - heading "Double Room" [level=3] [ref=e144]
+              - paragraph [ref=e145]: Kamar luas untuk keluarga kecil dengan balkon menghadap pegunungan. Dua tempat tidur queen size.
+              - generic [ref=e146]:
+                - img [ref=e147]
+                - generic [ref=e150]: "Tersedia: 1 Kamar"
+              - generic [ref=e151]:
+                - generic [ref=e152]: AC
+                - generic [ref=e153]: Balkon
+                - generic [ref=e154]: WiFi
+                - generic [ref=e155]: 2 Queen Bed
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - text: Rp 550.000
+                - generic [ref=e158]: / malam
+              - button "Pesan" [ref=e159]
+        - generic [ref=e160] [cursor=pointer]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - img "Villa Profile" [ref=e163]
+              - img "Villa Profile" [ref=e164]
+              - img "Villa Profile" [ref=e165]
+            - generic [ref=e167]: Lihat Detail Kamar
+            - button [ref=e168]:
+              - img [ref=e169]
+            - button [ref=e171]:
+              - img [ref=e172]
+            - generic [ref=e178]:
+              - img [ref=e179]
+              - text: Max 6 tamu
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - heading "Triple Standard" [level=3] [ref=e186]
+              - paragraph [ref=e187]: Kamar triple standar cocok untuk rombongan dengan fasilitas lengkap dan ruang santai bersama.
+              - generic [ref=e188]:
+                - img [ref=e189]
+                - generic [ref=e192]: "Tersedia: 4 Kamar"
+              - generic [ref=e193]:
+                - generic [ref=e194]: AC
+                - generic [ref=e195]: Ruang Tamu
+                - generic [ref=e196]: WiFi
+                - generic [ref=e197]: 3 Bed
+            - generic [ref=e198]:
+              - generic [ref=e199]:
+                - text: Rp 750.000
+                - generic [ref=e200]: / malam
+              - button "Pesan" [ref=e201]
+        - generic [ref=e202] [cursor=pointer]:
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - img "Villa Profile" [ref=e205]
+              - img "Villa Profile" [ref=e206]
+              - img "Villa Profile" [ref=e207]
+            - generic [ref=e209]: Lihat Detail Kamar
+            - button [ref=e210]:
+              - img [ref=e211]
+            - button [ref=e213]:
+              - img [ref=e214]
+            - generic [ref=e220]:
+              - img [ref=e221]
+              - text: Max 6 tamu
+          - generic [ref=e226]:
+            - generic [ref=e227]:
+              - heading "Triple Suite" [level=3] [ref=e228]
+              - paragraph [ref=e229]: Suite premium dengan ruang tamu terpisah, dapur mini, dan jacuzzi privat menghadap pegunungan.
+              - generic [ref=e230]:
+                - img [ref=e231]
+                - generic [ref=e234]: "Tersedia: 2 Kamar"
+              - generic [ref=e235]:
+                - generic [ref=e236]: Jacuzzi
+                - generic [ref=e237]: Dapur Mini
+                - generic [ref=e238]: WiFi
+                - generic [ref=e239]: Living Room
+            - generic [ref=e240]:
+              - generic [ref=e241]:
+                - text: Rp 1.200.000
+                - generic [ref=e242]: / malam
+              - button "Pesan" [ref=e243]
+    - generic [ref=e248]:
+      - generic [ref=e249]:
+        - heading "Deretan kenangan bersama Villa Kampung Gunung" [level=2] [ref=e250]
+        - paragraph [ref=e251]: Apapun agendanya, temukan harmoni dan pertumbuhan di sini, pengalaman dan tujuan anda adalah prioritas kami
+      - generic [ref=e252]:
+        - img "Gallery 0" [ref=e254] [cursor=pointer]
+        - generic:
+          - img "Gallery 1"
+        - generic:
+          - img "Gallery 2"
+        - generic:
+          - img "Gallery 3"
+        - generic:
+          - img "Gallery 4"
+        - generic:
+          - img "Gallery 5"
+        - img "Gallery 6" [ref=e257] [cursor=pointer]
+        - img "Gallery 7" [ref=e260] [cursor=pointer]
+        - generic [ref=e262] [cursor=pointer]:
+          - img "Gallery 8" [ref=e263]
+          - generic [ref=e265]:
+            - heading "Private Retreat" [level=3] [ref=e266]
+            - button "Pesan Sekarang" [ref=e267]
+        - img "Gallery 9" [ref=e269] [cursor=pointer]
+        - button [ref=e271]:
+          - img [ref=e272]
+        - button [ref=e274]:
+          - img [ref=e275]
+      - generic [ref=e277]:
+        - paragraph [ref=e279]: Bagi Anda warga urban yang membutuhkan solo traveling untuk menghilangkan beban pikiran dari pekerjaan. Temukan kembali ketenangan batin Anda di rumah kayu kami yang damai.
+        - generic [ref=e282]:
+          - heading "Pilih Cerita Anda di Villa Kampung Gunung" [level=4] [ref=e283]
+          - generic [ref=e284]:
+            - generic [ref=e285] [cursor=pointer]:
+              - img "Private Retreat" [ref=e286]
+              - heading "Private Retreat" [level=4] [ref=e289]
+            - generic [ref=e290] [cursor=pointer]:
+              - img "Family Gathering" [ref=e291]
+              - heading "Family Gathering" [level=4] [ref=e294]
+            - generic [ref=e295] [cursor=pointer]:
+              - img "Community Gathering" [ref=e296]
+              - heading "Community Gathering" [level=4] [ref=e299]
+            - generic [ref=e300] [cursor=pointer]:
+              - img "Corporate Gathering" [ref=e301]
+              - heading "Corporate Gathering" [level=4] [ref=e304]
+    - generic [ref=e306]:
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - img [ref=e309]
+          - text: Destinasi
+        - heading "Wisata Sekitar" [level=2] [ref=e311]
+        - paragraph [ref=e312]: Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan
+      - generic [ref=e313]:
+        - generic [ref=e314] [cursor=pointer]:
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - img "Destinasi Wisata" [ref=e317]
+              - img "Destinasi Wisata" [ref=e318]
+              - img "Destinasi Wisata" [ref=e319]
+            - link "Jelajahi Lokasi" [ref=e322]:
+              - /url: https://www.google.com/maps/search/Curug+Putri+Palutungan
+              - generic [ref=e323]: Jelajahi Lokasi
+            - button [ref=e324]:
+              - img [ref=e325]
+            - button [ref=e327]:
+              - img [ref=e328]
+            - generic [ref=e330]:
+              - img [ref=e332]
+              - generic [ref=e336]:
+                - img [ref=e337]
+                - text: 10 menit dari villa
+          - generic [ref=e340]:
+            - heading "Curug Putri Palutungan" [level=3] [ref=e341]
+            - paragraph [ref=e342]: Nikmati kemudahan akses QR-code digital ticketing yang terintegrasi. Rasakan kesejukan air terjun alami yang dilengkapi fasilitas smart-locker IoT untuk keamanan barang bawaan Anda.
+        - generic [ref=e343] [cursor=pointer]:
+          - generic [ref=e344]:
+            - generic [ref=e345]:
+              - img "Destinasi Wisata" [ref=e346]
+              - img "Destinasi Wisata" [ref=e347]
+              - img "Destinasi Wisata" [ref=e348]
+            - link "Jelajahi Lokasi" [ref=e351]:
+              - /url: https://www.google.com/maps/search/Gedung+Perundingan+Linggarjati
+              - generic [ref=e352]: Jelajahi Lokasi
+            - button [ref=e353]:
+              - img [ref=e354]
+            - button [ref=e356]:
+              - img [ref=e357]
+            - generic [ref=e359]:
+              - img [ref=e361]
+              - generic [ref=e363]:
+                - img [ref=e364]
+                - text: 20 menit dari villa
+          - generic [ref=e367]:
+            - heading "Gedung Perundingan Linggarjati" [level=3] [ref=e368]
+            - paragraph [ref=e369]: Wisata sejarah imersif. Pindai ruangan dengan smartphone Anda untuk menikmati fitur Augmented Reality (AR) yang menghidupkan kembali momen krusial kemerdekaan RI.
+        - generic [ref=e370] [cursor=pointer]:
+          - generic [ref=e371]:
+            - generic [ref=e372]:
+              - img "Destinasi Wisata" [ref=e373]
+              - img "Destinasi Wisata" [ref=e374]
+              - img "Destinasi Wisata" [ref=e375]
+            - link "Jelajahi Lokasi" [ref=e378]:
+              - /url: https://www.google.com/maps/search/Waduk+Darma
+              - generic [ref=e379]: Jelajahi Lokasi
+            - button [ref=e380]:
+              - img [ref=e381]
+            - button [ref=e383]:
+              - img [ref=e384]
+            - generic [ref=e386]:
+              - img [ref=e388]
+              - generic [ref=e390]:
+                - img [ref=e391]
+                - text: 25 menit dari villa
+          - generic [ref=e394]:
+            - heading "Waduk Darma" [level=3] [ref=e395]
+            - paragraph [ref=e396]: Kawasan eco-tourism modern dengan bentangan air yang luas. Kami menyediakan layanan smart-booking untuk area piknik eksklusif keluarga Anda di tepi waduk.
+    - generic [ref=e398]:
+      - generic [ref=e399]:
+        - generic [ref=e400]:
+          - img [ref=e401]
+          - text: Kuliner
+        - heading "Paket Kuliner" [level=2] [ref=e406]
+        - paragraph [ref=e407]: Nikmati cita rasa autentik masakan Sunda dan BBQ khas pegunungan
+      - generic [ref=e408]:
+        - generic [ref=e409] [cursor=pointer]:
+          - generic [ref=e410]:
+            - img "Nasi Liwet Kampung" [ref=e411]
+            - generic [ref=e413]: Pesan Sekarang
+            - generic [ref=e414]: Rp 75.000 / pax
+          - generic [ref=e415]:
+            - heading "Nasi Liwet Kampung" [level=3] [ref=e416]
+            - paragraph [ref=e417]: Nasi liwet otentik dimasak dengan kayu bakar, disajikan dengan lauk tradisional khas Sunda.
+            - generic [ref=e418]:
+              - paragraph [ref=e419]: "Menu Termasuk:"
+              - generic [ref=e420]:
+                - img [ref=e421]
+                - text: Nasi Liwet
+              - generic [ref=e423]:
+                - img [ref=e424]
+                - text: Ayam Goreng
+              - generic [ref=e426]:
+                - img [ref=e427]
+                - text: Lalapan Segar
+              - generic [ref=e429]:
+                - img [ref=e430]
+                - text: Sambal Dadak
+              - generic [ref=e432]:
+                - img [ref=e433]
+                - text: Es Teh Manis
+        - generic [ref=e435] [cursor=pointer]:
+          - generic [ref=e436]:
+            - img "BBQ Gunung Premium" [ref=e437]
+            - generic [ref=e439]: Pesan Sekarang
+            - generic [ref=e440]: Rp 150.000 / pax
+          - generic [ref=e441]:
+            - heading "BBQ Gunung Premium" [level=3] [ref=e442]
+            - paragraph [ref=e443]: Paket BBQ premium dengan daging sapi dan ayam marinasi rempah lokal di tengah alam pegunungan.
+            - generic [ref=e444]:
+              - paragraph [ref=e445]: "Menu Termasuk:"
+              - generic [ref=e446]:
+                - img [ref=e447]
+                - text: Daging Sapi
+              - generic [ref=e449]:
+                - img [ref=e450]
+                - text: Ayam Bakar
+              - generic [ref=e452]:
+                - img [ref=e453]
+                - text: Jagung Bakar
+              - generic [ref=e455]:
+                - img [ref=e456]
+                - text: Sosis Premium
+              - generic [ref=e458]:
+                - img [ref=e459]
+                - text: Minuman Segar
+        - generic [ref=e461] [cursor=pointer]:
+          - generic [ref=e462]:
+            - img "Paket Tradisional Sunda" [ref=e463]
+            - generic [ref=e465]: Pesan Sekarang
+            - generic [ref=e466]: Rp 120.000 / pax
+          - generic [ref=e467]:
+            - heading "Paket Tradisional Sunda" [level=3] [ref=e468]
+            - paragraph [ref=e469]: "Sajian lengkap masakan Sunda autentik: nasi timbel, gurame bakar, dan sayur asem segar."
+            - generic [ref=e470]:
+              - paragraph [ref=e471]: "Menu Termasuk:"
+              - generic [ref=e472]:
+                - img [ref=e473]
+                - text: Nasi Timbel
+              - generic [ref=e475]:
+                - img [ref=e476]
+                - text: Gurame Bakar
+              - generic [ref=e478]:
+                - img [ref=e479]
+                - text: Sayur Asem
+              - generic [ref=e481]:
+                - img [ref=e482]
+                - text: Karedok
+              - generic [ref=e484]:
+                - img [ref=e485]
+                - text: Es Kelapa Muda
+    - generic [ref=e487]:
+      - heading "Temukan Kami" [level=2] [ref=e489]
+      - generic [ref=e490]:
+        - generic [ref=e491]:
+          - iframe [ref=e493]:
+            
+          - generic [ref=e494]:
+            - heading "Villa Kampung Gunung" [level=3] [ref=e495]
+            - generic [ref=e496]:
+              - generic [ref=e497] [cursor=pointer]:
+                - img [ref=e498]
+                - generic [ref=e501]: Jl. Perumahan Cipari, Cigugur, Kec. Kuningan, Kabupaten Kuningan, Jawa Barat 45518
+              - generic [ref=e502]:
+                - img [ref=e503]
+                - generic [ref=e505]: +62 811-2333-838
+              - generic [ref=e506]:
+                - img [ref=e507]
+                - generic [ref=e510]: "Check-in: 14:00 | Check-out: 12:00"
+              - generic [ref=e511]:
+                - generic [ref=e512] [cursor=pointer]:
+                  - img [ref=e513]
+                  - text: Free WiFi
+                - generic [ref=e517] [cursor=pointer]:
+                  - img [ref=e518]
+                  - text: Parkir Luas
+                - generic [ref=e522] [cursor=pointer]:
+                  - img [ref=e523]
+                  - text: Restoran
+        - generic [ref=e525]:
+          - generic [ref=e526] [cursor=pointer]:
+            - generic [ref=e527]:
+              - generic [ref=e528]: "4.8"
+              - generic [ref=e529]:
+                - img [ref=e530]
+                - img [ref=e532]
+                - img [ref=e534]
+                - img [ref=e536]
+                - img [ref=e538]
+              - generic [ref=e540]: 500+ ulasan Google
+            - generic [ref=e541]:
+              - generic [ref=e542]:
+                - generic [ref=e543]: "5"
+                - img [ref=e544]
+                - generic [ref=e548]: 85%
+              - generic [ref=e549]:
+                - generic [ref=e550]: "4"
+                - img [ref=e551]
+                - generic [ref=e555]: 10%
+              - generic [ref=e556]:
+                - generic [ref=e557]: "3"
+                - img [ref=e558]
+                - generic [ref=e562]: 3%
+              - generic [ref=e563]:
+                - generic [ref=e564]: "2"
+                - img [ref=e565]
+                - generic [ref=e569]: 1%
+              - generic [ref=e570]:
+                - generic [ref=e571]: "1"
+                - img [ref=e572]
+                - generic [ref=e576]: 1%
+          - generic [ref=e577]:
+            - generic [ref=e578]:
+              - generic [ref=e579]: BS
+              - generic [ref=e580]:
+                - heading "Budi Santoso" [level=5] [ref=e581]
+                - text: Mei 2025
+              - generic [ref=e582]:
+                - img [ref=e583]
+                - img [ref=e585]
+                - img [ref=e587]
+                - img [ref=e589]
+                - img [ref=e591]
+            - paragraph [ref=e593]: "\"Villa yang sangat nyaman dengan pemandangan luar biasa. Staff ramah dan makanannya enak banget. Pasti kembali lagi kesini!\""
+          - generic [ref=e594]:
+            - generic [ref=e595]:
+              - generic [ref=e596]: SR
+              - generic [ref=e597]:
+                - heading "Siti Rahayu" [level=5] [ref=e598]
+                - text: April 2025
+              - generic [ref=e599]:
+                - img [ref=e600]
+                - img [ref=e602]
+                - img [ref=e604]
+                - img [ref=e606]
+                - img [ref=e608]
+            - paragraph [ref=e610]: "\"Pengalaman menginap terbaik! Anak-anak sangat senang dengan suasana alamnya. Udaranya segar dan sangat tenang. Highly recommended!\""
+    - generic [ref=e612]:
+      - generic [ref=e613]:
+        - generic [ref=e614]:
+          - generic [ref=e615]:
+            - img [ref=e616]
+            - generic [ref=e619]: Villa Kampung Gunung
+          - paragraph [ref=e620]: Villa premium di tengah alam pegunungan. Rasakan ketenangan dan keindahan alam dengan fasilitas modern dan pelayanan terbaik di Kuningan, Jawa Barat.
+        - generic [ref=e621]:
+          - heading "Navigasi" [level=4] [ref=e622]
+          - generic [ref=e623]:
+            - link "Beranda" [ref=e624] [cursor=pointer]:
+              - /url: "#hero"
+            - link "Villa" [ref=e625] [cursor=pointer]:
+              - /url: "#villas"
+            - link "Wisata" [ref=e626] [cursor=pointer]:
+              - /url: "#wisata"
+            - link "Kuliner" [ref=e627] [cursor=pointer]:
+              - /url: "#kuliner"
+            - link "Ulasan" [ref=e628] [cursor=pointer]:
+              - /url: "#reviews"
+        - generic [ref=e629]:
+          - heading "Kontak Kami" [level=4] [ref=e630]
+          - generic [ref=e631]:
+            - generic [ref=e632]:
+              - img [ref=e633]
+              - generic [ref=e636]: Jl. Perumahan Cipari, Cigugur, Kuningan, Jawa Barat
+            - generic [ref=e637]:
+              - img [ref=e638]
+              - generic [ref=e640]: +62 811-2333-838
+            - link "Chat WhatsApp" [ref=e641] [cursor=pointer]:
+              - /url: https://wa.me/628112333838
+              - img [ref=e642]
+              - text: Chat WhatsApp
+        - generic [ref=e645]:
+          - heading "Our Social Media" [level=4] [ref=e646]
+          - paragraph [ref=e647]: Ikuti akun resmi kami untuk update promo menarik dan galeri estetis.
+          - generic [ref=e648]:
+            - link [ref=e649] [cursor=pointer]:
+              - /url: https://www.instagram.com/vilakampunggunung?igsh=MXV6N21iMnBjcnhmMw==
+              - img [ref=e650]
+            - link [ref=e653] [cursor=pointer]:
+              - /url: https://www.tiktok.com/@villakampunggunung?_r=1&_t=ZS-96Syg9IYbjg
+              - img [ref=e654]
+            - link [ref=e656] [cursor=pointer]:
+              - /url: https://www.facebook.com/share/1Jt8mHA8cb/
+              - img [ref=e657]
+      - generic [ref=e659]:
+        - paragraph [ref=e660]: © 2026 Villa Kampung Gunung. All rights reserved.
+        - generic [ref=e661]:
+          - generic [ref=e662] [cursor=pointer]: Privacy Policy
+          - generic [ref=e663] [cursor=pointer]: Terms of Service
+  - button "Open Next.js Dev Tools" [ref=e669] [cursor=pointer]:
+    - img [ref=e670]
+  - alert [ref=e673]
+```

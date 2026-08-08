@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongoose'; // Nah, ini yang benar, tanpa kurung kurawal!
-import Reservation from '@/models/Reservation';
+import prisma from '@/lib/prisma';
 
 function generateReservationId() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -13,8 +12,6 @@ function generateReservationId() {
 
 export async function POST(request) {
   try {
-    await connectDB();
-
     const body = await request.json();
     const {
       room,
@@ -48,30 +45,30 @@ export async function POST(request) {
 
     // Generate ID unik
     let reservationId = generateReservationId();
-    let exists = await Reservation.findOne({ reservationId });
+    let exists = await prisma.booking.findUnique({ where: { reservationId } });
     while (exists) {
       reservationId = generateReservationId();
-      exists = await Reservation.findOne({ reservationId });
+      exists = await prisma.booking.findUnique({ where: { reservationId } });
     }
 
-    // Buat data baru
     const computedNights = nights || Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
     const computedTotalPrice = totalPrice || 0;
-    const reservation = new Reservation({
-      reservationId,
-      room,
-      checkIn: checkInDate,
-      checkOut: checkOutDate,
-      nights: computedNights,
-      pricePerNight: computedNights > 0 ? computedTotalPrice / computedNights : 0,
-      guests: guests || 1,
-      totalPrice: totalPrice || 0,
-      customerName,
-      customerPhone,
-      status: 'pending',
-    });
 
-    const saved = await reservation.save();
+    const saved = await prisma.booking.create({
+      data: {
+        reservationId,
+        room,
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+        nights: computedNights,
+        pricePerNight: computedNights > 0 ? computedTotalPrice / computedNights : 0,
+        guests: guests || 1,
+        totalPrice: computedTotalPrice,
+        customerName,
+        customerPhone,
+        status: 'Pending',
+      }
+    });
 
     return NextResponse.json(
       { success: true, data: saved },

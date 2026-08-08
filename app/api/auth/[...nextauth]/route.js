@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
-import User from "@/models/user";
+import User from "@/models/User";
 
 // Fungsi koneksi database (sesuaikan dengan file koneksimu)
 const connectDB = async () => {

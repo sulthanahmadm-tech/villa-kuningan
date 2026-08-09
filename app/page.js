@@ -250,6 +250,16 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTarget, setActiveTarget] = useState(0);
   const [activeSubSlide, setActiveSubSlide] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Scroll Listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Interactive Target Carousel States
   const [isCarouselHovered, setIsCarouselHovered] = useState(false);
@@ -495,6 +505,18 @@ export default function Home() {
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        <div className={`md:hidden absolute top-20 left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-96 py-6 opacity-100 shadow-2xl' : 'max-h-0 py-0 opacity-0'}`}>
+          <div className="flex flex-col items-center gap-6">
+            <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Beranda</a>
+            <a href="#villas" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Villa</a>
+            <a href="#wisata" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Wisata</a>
+            <button onClick={() => { setCancelOpen(true); setMobileMenuOpen(false); }} className="text-[#E5B869] font-medium flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" /> Kelola Booking
+            </button>
+          </div>
+        </div>
       </nav>
 
       {/* ========== HERO CORE SECTION ========== */}
@@ -508,15 +530,15 @@ export default function Home() {
             <span className="text-white text-sm font-medium tracking-wide">Kuningan, Jawa Barat</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-bold text-white mb-6 drop-shadow-2xl leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-4 md:mb-6 drop-shadow-2xl leading-tight">
             Villa Kampung <br /><span className="text-[#98D8A0]">Gunung</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-md font-medium">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto drop-shadow-md font-medium px-4">
             Rasakan ketenangan alam pegunungan dengan kenyamanan premium di tengah hutan tropis
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-12">
             <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-5 py-2.5 border border-white/10 hover:bg-black/60 transition cursor-pointer">
               <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
               <span className="text-white text-sm font-semibold">4.8 Rating</span>
@@ -531,8 +553,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-2xl max-w-4xl mx-auto border-b-4 border-[#163a28]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+          <div className="bg-white rounded-3xl md:rounded-[2rem] p-5 md:p-8 shadow-2xl max-w-4xl mx-auto border-b-4 border-[#163a28]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 items-end">
               <div className="text-left">
                 <label className="text-xs font-extrabold text-[#163a28] uppercase tracking-wider mb-2 block">Check-in</label>
                 <Popover open={checkInOpen} onOpenChange={setCheckInOpen}>
@@ -582,8 +604,8 @@ export default function Home() {
       </section>
 
       {/* ========== VILLAS ACCOMMODATION GRID SYSTEM ========== */}
-      <section id="villas" className="py-24 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+      <section id="villas" className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#163a28] mb-4">Pilihan Villa Kami</h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">Temukan hunian yang sempurna untuk liburan Anda di tengah keindahan alam pegunungan</p>
         </div>
@@ -653,7 +675,7 @@ export default function Home() {
       {/* ========== TARGET PENJUALAN CAROUSEL ========== */}
       <section 
         id="target-market" 
-        className="pt-20 pb-16 px-4 overflow-hidden relative transition-colors duration-1000"
+        className="pt-16 pb-12 md:pt-20 md:pb-16 px-4 overflow-hidden relative transition-colors duration-1000"
         style={{ backgroundColor: '#112419' }}
       >
         {/* Dynamic Background Blur Effect */}
@@ -1222,6 +1244,15 @@ export default function Home() {
           </div>
         </DialogContent>
       </Dialog>
+      {/* Sticky Bottom Booking Bar (Mobile Only) */}
+      <div className={`fixed bottom-0 left-0 right-0 z-40 p-4 pb-6 bg-white/90 backdrop-blur-xl border-t border-gray-200 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] md:hidden transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex justify-between items-center gap-3 ${isScrolled ? 'translate-y-0' : 'translate-y-full'}`}>
+        <Button onClick={() => document.getElementById('villas')?.scrollIntoView({ behavior: 'smooth' })} className="flex-1 bg-[#163a28] hover:bg-[#0d2618] text-white rounded-full font-bold h-12 shadow-lg text-sm tracking-wide">
+          <CalendarIcon className="w-5 h-5 mr-2 text-[#98D8A0]" /> Pesan Kamar
+        </Button>
+        <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="flex items-center justify-center h-12 w-12 bg-[#25D366] hover:bg-[#1DA851] text-white rounded-full flex-shrink-0 shadow-xl transition-transform active:scale-95">
+          <MessageCircle className="w-6 h-6" />
+        </a>
+      </div>
     </main>
   );
 }

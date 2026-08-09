@@ -231,13 +231,9 @@ export default function Home() {
   const [checkInOpen, setCheckInOpen] = useState(false);
   const [checkOutOpen, setCheckOutOpen] = useState(false);
 
-  // Multi-step Booking Flow state
-  const [selectedVilla, setSelectedVilla] = useState(null);
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState(1);
-  const [customerName, setCustomerName] = useState('');
-  const [customerPhone, setCustomerPhone] = useState('');
-  const [bookingStatus, setBookingStatus] = useState('idle');
+  // Villa Swipe Tracking
+  const villaTouchStartX = useRef({});
+  const villaTouchEndX = useRef({});
 
   // Cancellation Flow state
   const [cancelOpen, setCancelOpen] = useState(false);
@@ -334,68 +330,25 @@ export default function Home() {
     setCarouselIndexes(prev => ({ ...prev, [key]: sIdx }));
   };
 
-  /* ------ Booking Pipeline Multi-step ------ */
-  const openBooking = (villa) => {
-    setSelectedVilla(villa);
-    setCheckoutStep(1);
-    setBookingOpen(true);
-    setBookingStatus('idle');
+  /* ------ Villa Swipe Logic ------ */
+  const handleVillaTouchStart = (e, key) => {
+    villaTouchStartX.current[key] = e.touches[0].clientX;
   };
 
-  const handleNextStep = () => {
-    if (checkoutStep === 1) {
-      if (!checkIn || !checkOut || nights <= 0) {
-        toast.error('Mohon tentukan tanggal check-in & check-out valid terlebih dahulu');
-        return;
-      }
-      setCheckoutStep(2);
-    } else if (checkoutStep === 2) {
-      if (!customerName.trim() || !customerPhone.trim()) {
-        toast.error('Mohon lengkapi identitas nama dan nomor WhatsApp Anda');
-        return;
-      }
-      setCheckoutStep(3);
-    }
+  const handleVillaTouchMove = (e, key) => {
+    villaTouchEndX.current[key] = e.touches[0].clientX;
   };
 
-  const handleBookingExecution = async () => {
-    setBookingStatus('saving');
-    try {
-      const totalPrice = selectedVilla.price * nights;
-      const res = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          room: selectedVilla.name,
-          checkIn: checkIn.toISOString(),
-          checkOut: checkOut.toISOString(),
-          nights,
-          guests,
-          totalPrice,
-          customerName: customerName.trim(),
-          customerPhone: customerPhone.trim(),
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Gagal memproses pesanan.');
-
-      const reservationId = data.data.reservationId;
-      toast.success(`Unit Kamar Berhasil Dikunci! ID: ${reservationId}`);
-
-      const message = `Halo Admin, saya ingin konfirmasi reservasi Villa Kampung Gunung.\n\n*Reservation ID:* ${reservationId}\n*Nama:* ${customerName.trim()}\n*Kamar:* ${selectedVilla.name}\n*Check-in:* ${format(checkIn, 'dd MMMM yyyy')}\n*Check-out:* ${format(checkOut, 'dd MMMM yyyy')}\n*Total:* ${formatRupiah(totalPrice)}`;
-
-      window.open(`https://wa.me/628112333838?text=${encodeURIComponent(message)}`, '_blank');
-
-      setBookingOpen(false);
-      setCustomerName('');
-      setCustomerPhone('');
-      setCheckoutStep(1);
-      setBookingStatus('idle');
-    } catch (error) {
-      toast.error(error.message || 'Terjadi gangguan koneksi basis data.');
-      setBookingStatus('idle');
+  const handleVillaTouchEnd = (key, total) => {
+    if (!villaTouchStartX.current[key] || !villaTouchEndX.current[key]) return;
+    const diff = villaTouchStartX.current[key] - villaTouchEndX.current[key];
+    if (diff > 50) {
+      setCarouselIndexes(prev => ({ ...prev, [key]: ((prev[key] || 0) + 1) % total }));
+    } else if (diff < -50) {
+      setCarouselIndexes(prev => ({ ...prev, [key]: ((prev[key] || 0) - 1 + total) % total }));
     }
+    villaTouchStartX.current[key] = 0;
+    villaTouchEndX.current[key] = 0;
   };
 
   /* ------ Cancellation Logic Engine ------ */
@@ -610,60 +563,65 @@ export default function Home() {
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">Temukan hunian yang sempurna untuk liburan Anda di tengah keindahan alam pegunungan</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
           {VILLAS.map((villa, idx) => {
             const cKey = `villa_${idx}`;
             return (
-              <div key={villa.id} className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-none hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between cursor-pointer relative" onClick={() => openBooking(villa)}>
-                <div className="relative h-60 overflow-hidden">
+              <div key={villa.id} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-none hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between cursor-pointer relative" onClick={() => toast.success("Pesanan anda berhasil!")}>
+                <div 
+                  className="relative h-32 md:h-60 overflow-hidden"
+                  onTouchStart={(e) => handleVillaTouchStart(e, cKey)}
+                  onTouchMove={(e) => handleVillaTouchMove(e, cKey)}
+                  onTouchEnd={() => handleVillaTouchEnd(cKey, villa.images.length)}
+                >
                   <div className="flex h-full transition-transform duration-500" style={{ transform: `translateX(-${(carouselIndexes[cKey] || 0) * 100}%)` }}>
                     {villa.images.map((img, i) => (
                       <img key={i} src={img} alt="Villa Profile" className="w-full h-full object-cover flex-shrink-0 group-hover:scale-110 transition-transform duration-1000" />
                     ))}
                   </div>
 
-                  <div className="absolute inset-0 bg-[#163a28]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="hidden md:flex absolute inset-0 bg-[#163a28]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center pointer-events-none">
                     <span className="bg-white text-[#163a28] font-bold px-6 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
                       Lihat Detail Kamar
                     </span>
                   </div>
 
-                  <button onClick={(e) => prevSlide(cKey, villa.images.length, e)} className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-[#163a28] p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"><ChevronLeft className="h-5 w-5" /></button>
-                  <button onClick={(e) => nextSlide(cKey, villa.images.length, e)} className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-[#163a28] p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"><ChevronRight className="h-5 w-5" /></button>
+                  <button onClick={(e) => prevSlide(cKey, villa.images.length, e)} className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-[#163a28] p-1 md:p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden md:block"><ChevronLeft className="h-4 w-4 md:h-5 md:w-5" /></button>
+                  <button onClick={(e) => nextSlide(cKey, villa.images.length, e)} className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-[#163a28] p-1 md:p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden md:block"><ChevronRight className="h-4 w-4 md:h-5 md:w-5" /></button>
 
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-1.5 z-10">
                     {villa.images.map((_, dotIdx) => (
-                      <div key={dotIdx} className={`h-2 rounded-full transition-all ${(carouselIndexes[cKey] || 0) === dotIdx ? 'bg-white w-6' : 'bg-white/60 w-2'}`} />
+                      <div key={dotIdx} className={`h-1.5 md:h-2 rounded-full transition-all ${(carouselIndexes[cKey] || 0) === dotIdx ? 'bg-white w-4 md:w-6' : 'bg-white/60 w-1.5 md:w-2'}`} />
                     ))}
                   </div>
 
-                  <div className="absolute top-4 left-4 bg-[#163a28]/90 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5 z-10">
-                    <Users className="h-3.5 w-3.5" /> Max {villa.capacity} tamu
+                  <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-[#163a28]/90 backdrop-blur-md text-white text-[9px] md:text-[11px] font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-full flex items-center gap-1 md:gap-1.5 z-10">
+                    <Users className="h-2.5 w-2.5 md:h-3.5 md:w-3.5" /> {villa.capacity} tamu
                   </div>
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col justify-between bg-white z-20">
+                <div className="p-3 md:p-6 flex-1 flex flex-col justify-between bg-white z-20">
                   <div>
-                    <h3 className="font-serif font-bold text-xl text-[#163a28] mb-2">{villa.name}</h3>
-                    <p className="text-sm text-gray-500 mb-3 line-clamp-2 leading-relaxed">{villa.description}</p>
+                    <h3 className="font-serif font-bold text-sm md:text-xl text-[#163a28] mb-1 md:mb-2 line-clamp-1">{villa.name}</h3>
+                    <p className="hidden md:block text-sm text-gray-500 mb-3 line-clamp-2 leading-relaxed">{villa.description}</p>
 
-                    <div className="flex items-center gap-2 mb-4 bg-green-50 px-3 py-1.5 rounded-lg border border-green-100 w-fit">
-                      <BedDouble className="h-4 w-4 text-green-600" />
-                      <span className="text-xs font-bold text-green-700">Tersedia: {villa.availableUnits} Kamar</span>
+                    <div className="flex items-center gap-1 md:gap-2 mb-2 md:mb-4 bg-green-50 px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-lg border border-green-100 w-fit">
+                      <BedDouble className="h-3 w-3 md:h-4 md:w-4 text-green-600" />
+                      <span className="text-[9px] md:text-xs font-bold text-green-700">Tersisa: {villa.availableUnits}</span>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="hidden md:flex flex-wrap gap-2 mb-6">
                       {villa.features.map((f, i) => (
                         <span key={i} className="text-xs font-medium bg-[#e8f3ec] text-[#1a4731] px-3 py-1 rounded-full">{f}</span>
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mt-auto pt-2 md:pt-4 border-t border-gray-100 gap-2">
                     <div>
-                      <span className="text-2xl font-extrabold text-[#163a28]">{formatRupiah(villa.price)}</span>
-                      <span className="text-xs font-medium text-gray-400 block mt-0.5">/ malam</span>
+                      <span className="text-sm md:text-2xl font-extrabold text-[#163a28] leading-none">{formatRupiah(villa.price)}</span>
+                      <span className="text-[9px] md:text-xs font-medium text-gray-400 block mt-0.5">/ malam</span>
                     </div>
-                    <Button className="bg-[#163a28] hover:bg-[#0d2618] text-white text-sm px-6 h-11 rounded-xl font-bold shadow-md transition-transform active:scale-95" onClick={(e) => { e.stopPropagation(); openBooking(villa); }}>Pesan</Button>
+                    <Button className="w-full md:w-auto bg-[#163a28] hover:bg-[#0d2618] text-white text-[10px] md:text-sm px-4 md:px-6 h-8 md:h-11 rounded-lg md:rounded-xl font-bold shadow-md transition-transform active:scale-95" onClick={(e) => { e.stopPropagation(); toast.success("Pesanan anda berhasil!"); }}>Pesan</Button>
                   </div>
                 </div>
               </div>
@@ -1119,90 +1077,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* ========== CHECKOUT MODAL ========== */}
-      <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
-        <DialogContent className="sm:max-w-lg bg-white rounded-3xl p-8 max-h-[92vh] overflow-y-auto border-none shadow-2xl">
-          <DialogHeader className="mb-4">
-            <DialogTitle className="font-serif text-2xl text-[#163a28] flex items-center gap-2 mb-2">
-              <ShieldCheck className="text-[#25D366] h-7 w-7" /> Secured Checkout
-            </DialogTitle>
-            <DialogDescription className="text-gray-500 font-medium">
-              Proses Kunci Unit Kamar Real-time — Langkah {checkoutStep} dari 3
-            </DialogDescription>
-          </DialogHeader>
 
-          <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden flex mb-6">
-            <div className={`h-full transition-all duration-500 ease-out ${checkoutStep === 1 ? 'w-1/3 bg-[#98D8A0]' : checkoutStep === 2 ? 'w-2/3 bg-[#235c40]' : 'w-full bg-[#163a28]'}`} />
-          </div>
-
-          {selectedVilla && (
-            <div className="space-y-6">
-              {checkoutStep === 1 && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="bg-[#F9F9F7] p-4 rounded-2xl border border-gray-100 flex items-center gap-5 shadow-sm">
-                    <img src={selectedVilla.images[0]} alt="Selected Villa" className="h-20 w-20 object-cover rounded-xl shadow-sm" />
-                    <div>
-                      <h4 className="font-extrabold text-[#163a28] text-base mb-1">{selectedVilla.name}</h4>
-                      <p className="text-sm font-semibold text-[#a37b3d]">{formatRupiah(selectedVilla.price)} <span className="text-gray-400 font-medium">/ malam</span></p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-xs font-extrabold text-gray-500 uppercase tracking-widest block mb-2">Check-In</label>
-                      <div className="h-12 border border-gray-200 rounded-xl px-4 flex items-center text-sm font-bold text-[#163a28] bg-white shadow-sm">{checkIn ? format(checkIn, 'dd MMM yyyy') : '-'}</div>
-                    </div>
-                    <div>
-                      <label className="text-xs font-extrabold text-gray-500 uppercase tracking-widest block mb-2">Check-Out</label>
-                      <div className="h-12 border border-gray-200 rounded-xl px-4 flex items-center text-sm font-bold text-[#163a28] bg-white shadow-sm">{checkOut ? format(checkOut, 'dd MMM yyyy') : '-'}</div>
-                    </div>
-                  </div>
-                  <Button className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-14 rounded-xl font-bold shadow-lg text-base" onClick={handleNextStep}>Lanjutkan ke Data Diri</Button>
-                </div>
-              )}
-
-              {checkoutStep === 2 && (
-                <div className="space-y-5 animate-in fade-in slide-in-from-right-8 duration-500">
-                  <div>
-                    <label className="text-xs font-extrabold text-[#163a28] block mb-2 uppercase tracking-wide">Nama Lengkap Sesuai KTP</label>
-                    <Input value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="Contoh: Sulthan Ahmad" className="h-14 rounded-xl border-gray-200 focus-visible:ring-[#163a28] font-medium" />
-                  </div>
-                  <div>
-                    <label className="text-xs font-extrabold text-[#163a28] block mb-2 uppercase tracking-wide">Nomor WhatsApp Aktif</label>
-                    <Input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="08xxxxxxxxxx" className="h-14 rounded-xl border-gray-200 focus-visible:ring-[#163a28] font-medium" />
-                  </div>
-                  <div className="flex gap-3 pt-2">
-                    <Button variant="outline" className="w-1/3 h-14 rounded-xl font-bold border-gray-300 text-gray-600 hover:bg-gray-50" onClick={() => setCheckoutStep(1)}>Kembali</Button>
-                    <Button className="w-2/3 bg-[#163a28] hover:bg-[#0d2618] text-white h-14 rounded-xl font-bold shadow-lg" onClick={handleNextStep}>Verifikasi Pembayaran</Button>
-                  </div>
-                </div>
-              )}
-
-              {checkoutStep === 3 && (
-                <div className="space-y-6 animate-in fade-in zoom-in-95 duration-500">
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 text-sm font-medium text-amber-800 flex gap-3 shadow-sm">
-                    <Clock className="h-5 w-5 shrink-0 text-amber-600" />
-                    <span className="leading-relaxed">Unit kamar Anda dikunci sementara selama <strong>10 menit</strong> guna menghindari bentrok pesanan.</span>
-                  </div>
-                  <div className="bg-[#F9F9F7] p-6 rounded-2xl space-y-4 text-sm border border-gray-200 shadow-sm">
-                    <div className="flex justify-between items-center text-gray-500"><span className="font-medium">Tipe Kamar:</span><span className="font-bold text-[#163a28]">{selectedVilla.name}</span></div>
-                    <div className="flex justify-between items-center text-gray-500"><span className="font-medium">Nama Pemesan:</span><span className="font-bold text-[#163a28]">{customerName}</span></div>
-                    <div className="flex justify-between items-center text-gray-500"><span className="font-medium">Durasi Tinggal:</span><span className="font-bold text-[#163a28]">{nights} Malam ({guests} Tamu)</span></div>
-                    <div className="border-t border-gray-300 pt-4 mt-2 flex justify-between items-center text-base font-extrabold text-[#163a28]">
-                      <span>Harga Total (Nett):</span><span className="text-xl">{formatRupiah(selectedVilla.price * nights)}</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <Button variant="outline" className="w-1/3 h-14 rounded-xl font-bold border-gray-300 text-gray-600" onClick={() => setCheckoutStep(2)} disabled={bookingStatus === 'saving'}>Kembali</Button>
-                    <Button className="w-2/3 bg-[#163a28] hover:bg-[#0d2618] text-white h-14 rounded-xl font-bold shadow-xl" onClick={handleBookingExecution} disabled={bookingStatus === 'saving'}>
-                      {bookingStatus === 'saving' ? 'Mengunci Unit...' : 'Konfirmasi via WA'}
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
 
       {/* ========== CANCELLATION MODAL ========== */}
       <Dialog open={cancelOpen} onOpenChange={setCancelOpen}>

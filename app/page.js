@@ -85,7 +85,7 @@ const WISATA = [
       '/images/curug-putri.jpg'
     ],
     icon: Waves,
-    gmapsUrl: 'https://www.google.com/maps/search/Curug+Putri+Palutungan'
+    gmapsUrl: 'https://maps.app.goo.gl/oUsHAzSFd1WqJL4H9'
   },
   {
     name: 'Gedung Perundingan Linggarjati',
@@ -95,7 +95,7 @@ const WISATA = [
       '/images/linggarjati.jpg'
     ],
     icon: Mountain,
-    gmapsUrl: 'https://www.google.com/maps/search/Gedung+Perundingan+Linggarjati'
+    gmapsUrl: 'https://maps.app.goo.gl/iFKJp519TToUAFQDA'
   },
   {
     name: 'Waduk Darma',
@@ -105,8 +105,8 @@ const WISATA = [
       '/images/waduk-darma.jpg'
     ],
     icon: TreePine,
-    gmapsUrl: 'https://www.google.com/maps/search/Waduk+Darma'
-  },
+    gmapsUrl: 'https://maps.app.goo.gl/HUjD73W2hecnVKDeA'
+  }
 ];
 
 const KULINER = [
@@ -452,7 +452,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </section>
 
       {/* ========== USP BANNER ========== */}
-      <div className="bg-[#163a28] py-8 border-y-4 border-[#98D8A0]">
+      <div className="hidden md:block bg-[#163a28] py-8 border-y-4 border-[#98D8A0]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-around items-center gap-6 text-center">
             <div className="flex items-center gap-3">
@@ -748,9 +748,8 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
           <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 md:overflow-visible gap-6 lg:gap-8 pb-6 md:pb-0">
             {WISATA.map((w, idx) => {
-              const cKey = `wisata_${idx}`;
               return (
-                <div key={idx} className="w-[85vw] flex-shrink-0 snap-center md:w-auto bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
+                <div key={idx} className="w-[85vw] flex-shrink-0 snap-center md:w-auto h-full flex flex-col bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
                   <div className="relative h-48 lg:h-60 w-full overflow-hidden group">
                     <img src={w.images[0]} alt={w.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#163a28]/90 via-transparent to-transparent group-hover:from-[#163a28]/80 transition-colors" />
@@ -761,9 +760,17 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                       </span>
                     </div>
                   </div>
-                  <div className="p-6 lg:p-8">
+                  <div className="p-6 lg:p-8 flex flex-col flex-1">
                     <h3 className="font-serif font-bold text-xl lg:text-2xl text-[#163a28] mb-2 lg:mb-3 group-hover:text-[#235c40] transition-colors">{w.name}</h3>
-                    <p className="text-gray-500 leading-relaxed text-sm">{w.description}</p>
+                    <p className="text-gray-500 leading-relaxed text-sm mb-6 flex-1">{w.description}</p>
+                    <a 
+                      href={w.gmapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-[#e8f3ec] text-[#163a28] font-semibold text-sm rounded-xl hover:bg-[#98D8A0] transition-colors mt-auto"
+                    >
+                      <MapPin className="h-4 w-4" /> Buka di Maps
+                    </a>
                   </div>
                 </div>
               )

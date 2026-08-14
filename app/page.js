@@ -365,24 +365,24 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </nav>
 
       {/* ========== HERO CORE SECTION (B2B) ========== */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
         <img src={IMAGES.hero} alt="Gathering di Kampung Gunung" className="absolute inset-0 w-full h-full object-cover scale-105" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d2818]/90 via-[#0d2818]/70 to-transparent" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           
           <div className="text-left text-white">
 
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-6 drop-shadow-2xl leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 drop-shadow-2xl leading-tight">
               Villa Khusus Gathering & Kebersamaan <br className="hidden md:block"/> <span className="text-[#98D8A0]">di Alam Kuningan</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg drop-shadow-md font-medium leading-relaxed">
+            <p className="text-base md:text-lg text-white/90 mb-6 max-w-lg drop-shadow-md font-medium leading-relaxed">
               Tempat Ngumpul Seru Dengan Kapasitas Besar (Hingga 120 Orang). Nikmati momen tak terlupakan dengan fasilitas lengkap di tengah hutan tropis Kuningan.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="flex flex-wrap gap-3 mb-6">
               <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-xl px-4 py-2 border border-white/10">
                 <Users className="h-5 w-5 text-yellow-400" />
                 <span className="text-white text-sm font-medium">Kapasitas S.d 120 Orang</span>
@@ -395,26 +395,26 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
           </div>
 
           {/* EVENT INQUIRY FORM (LEAD GENERATION) */}
-          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-2xl border-t-8 border-[#163a28]">
-            <h3 className="text-2xl font-serif font-bold text-[#163a28] mb-2">Rencanakan Event Anda</h3>
-            <p className="text-gray-500 text-sm mb-6">Dapatkan proposal penawaran harga dan ketersediaan jadwal terbaik dari tim kami.</p>
+          <div className="bg-white rounded-2xl p-5 md:p-6 shadow-xl border-t-4 border-[#163a28]">
+            <h3 className="text-xl font-serif font-bold text-[#163a28] mb-1">Rencanakan Event Anda</h3>
+            <p className="text-gray-500 text-xs mb-4">Dapatkan proposal penawaran harga dan ketersediaan jadwal terbaik dari tim kami.</p>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               <div>
-                <label className="text-xs font-extrabold text-[#163a28] uppercase tracking-wider mb-2 block">Nama Instansi / Perusahaan / Komunitas</label>
+                <label className="text-[10px] font-extrabold text-[#163a28] uppercase tracking-wider mb-1 block">Nama Instansi / Perusahaan / Komunitas</label>
                 <Input 
                   placeholder="Misal: PT Teknologi Maju" 
-                  className="h-12 rounded-xl border-gray-300 focus-visible:ring-[#163a28]"
+                  className="h-10 rounded-lg border-gray-300 focus-visible:ring-[#163a28] text-sm"
                   value={formInstansi}
                   onChange={(e) => setFormInstansi(e.target.value)}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-extrabold text-[#163a28] uppercase tracking-wider mb-2 block">Estimasi Jumlah Peserta</label>
-                <div className="relative border border-gray-300 rounded-xl bg-white focus-within:border-[#163a28]">
+                <label className="text-[10px] font-extrabold text-[#163a28] uppercase tracking-wider mb-1 block">Estimasi Jumlah Peserta</label>
+                <div className="relative border border-gray-300 rounded-lg bg-white focus-within:border-[#163a28]">
                   <select 
-                    className="w-full h-12 px-4 bg-transparent text-sm font-medium text-gray-700 outline-none appearance-none cursor-pointer"
+                    className="w-full h-10 px-3 bg-transparent text-sm font-medium text-gray-700 outline-none appearance-none cursor-pointer"
                     value={formPeserta}
                     onChange={(e) => setFormPeserta(e.target.value)}
                   >
@@ -422,19 +422,19 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                     <option value="50-100">50 - 100 Orang</option>
                     <option value="100+">Lebih dari 100 Orang</option>
                   </select>
-                  <Users className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                  <Users className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-extrabold text-[#163a28] uppercase tracking-wider mb-3 block">Kebutuhan Tambahan (Opsional)</label>
-                <div className="grid grid-cols-2 gap-3">
+                <label className="text-[10px] font-extrabold text-[#163a28] uppercase tracking-wider mb-2 block">Kebutuhan Tambahan (Opsional)</label>
+                <div className="grid grid-cols-2 gap-2">
                   {['Catering', 'Outbound', 'SoundSystem'].map((need) => (
-                    <label key={need} className="flex items-center gap-3 cursor-pointer group">
-                      <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formKebutuhan[need] ? 'bg-[#163a28] border-[#163a28]' : 'border-gray-300 group-hover:border-[#163a28]'}`}>
-                        {formKebutuhan[need] && <Check className="w-3.5 h-3.5 text-white" />}
+                    <label key={need} className="flex items-center gap-2 cursor-pointer group">
+                      <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${formKebutuhan[need] ? 'bg-[#163a28] border-[#163a28]' : 'border-gray-300 group-hover:border-[#163a28]'}`}>
+                        {formKebutuhan[need] && <Check className="w-3 h-3 text-white" />}
                       </div>
-                      <span className="text-sm font-medium text-gray-600">{need === 'SoundSystem' ? 'Sound System' : need}</span>
+                      <span className="text-xs font-medium text-gray-600">{need === 'SoundSystem' ? 'Sound System' : need}</span>
                       {/* Hidden checkbox for accessibility/logic */}
                       <input type="checkbox" className="hidden" checked={formKebutuhan[need]} onChange={() => toggleKebutuhan(need)} />
                     </label>
@@ -442,8 +442,8 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 </div>
               </div>
 
-              <Button onClick={handleSendProposal} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-12 rounded-xl text-sm font-bold tracking-wide shadow-lg transition-transform active:scale-95 mt-4 group">
-                <Send className="h-4 w-4 mr-2 group-hover:animate-pulse" /> Kirim Proposal ke WhatsApp
+              <Button onClick={handleSendProposal} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-10 rounded-lg text-sm font-bold tracking-wide shadow-md transition-transform active:scale-95 mt-2 group">
+                <Send className="h-3 w-3 mr-2 group-hover:animate-pulse" /> Kirim Proposal
               </Button>
             </div>
           </div>
@@ -469,24 +469,24 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </div>
 
       {/* ========== HIGHLIGHT ACTIVITIES (BENTO GRID) ========== */}
-      <section id="activities" className="py-20 bg-white px-4">
+      <section id="activities" className="py-12 bg-white px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#163a28] mb-4">Aktivitas & Kebersamaan</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">Bangun keakraban tim Anda melalui berbagai aktivitas seru di venue kami yang luas.</p>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Aktivitas & Kebersamaan</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto text-base">Bangun keakraban tim Anda melalui berbagai aktivitas seru di venue kami yang luas.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
+          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[500px]">
             {/* Api Unggun (Besar) */}
             <div className="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.apiUnggun} alt="Api Unggun" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8">
-                <div className="bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                  <Flame className="text-white h-6 w-6" />
+              <div className="absolute bottom-0 left-0 p-6">
+                <div className="bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Flame className="text-white h-5 w-5" />
                 </div>
-                <h3 className="text-white font-serif font-bold text-3xl mb-2">Malam Api Unggun</h3>
-                <p className="text-gray-200">Momen hangat berbagi cerita di bawah langit malam Kuningan, fasilitas kayu bakar tersedia.</p>
+                <h3 className="text-white font-serif font-bold text-2xl mb-2">Malam Api Unggun</h3>
+                <p className="text-gray-200 text-sm">Momen hangat berbagi cerita di bawah langit malam Kuningan, fasilitas kayu bakar tersedia.</p>
               </div>
             </div>
 
@@ -534,14 +534,14 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </section>
 
       {/* ========== PAKET EXPERIENCE (Menggantikan Rooms) ========== */}
-      <section id="packages" className="py-24 bg-[#F0F4F1] px-4">
+      <section id="packages" className="py-12 bg-[#F0F4F1] px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#163a28] mb-4">Pilihan Paket Experience</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">Solusi hemat dan praktis untuk event berskala besar Anda.</p>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Pilihan Paket Experience</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base">Solusi hemat dan praktis untuk event berskala besar Anda.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             {PAKET_EXPERIENCE.map((paket) => (
               <div key={paket.id} className={`bg-white rounded-3xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 ${paket.highlight ? 'border-4 border-[#163a28] shadow-2xl scale-105 z-10' : 'border border-gray-200 shadow-lg'}`}>
                 {paket.highlight && (
@@ -549,15 +549,15 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                     Most Popular
                   </div>
                 )}
-                <div className="relative h-56">
+                <div className="relative h-48">
                   <img src={paket.image} alt={paket.name} className="w-full h-full object-cover" />
                   <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur text-[#163a28] text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
                     <Users className="h-3.5 w-3.5" /> {paket.capacity}
                   </div>
                 </div>
                 
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="mb-2 text-[#98D8A0] font-bold text-sm tracking-wide">{paket.subtitle}</div>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="mb-2 text-[#98D8A0] font-bold text-xs tracking-wide">{paket.subtitle}</div>
                   <h3 className="font-serif font-bold text-2xl text-[#163a28] mb-4">{paket.name}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{paket.description}</p>
                   
@@ -693,13 +693,13 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
           </div>
 
           <div className="text-center w-full flex flex-col items-center">
-            <div className="w-full max-w-2xl mb-8 min-h-[60px] flex items-center justify-center">
-               <p key={activeTarget} className="text-gray-200 text-base md:text-lg leading-relaxed drop-shadow-md animate-in fade-in zoom-in-95 duration-500 font-medium px-4">
+            <div className="w-full max-w-2xl mb-6 min-h-[50px] flex items-center justify-center">
+               <p key={activeTarget} className="text-gray-200 text-sm md:text-base leading-relaxed drop-shadow-md animate-in fade-in zoom-in-95 duration-500 font-medium px-4">
                  {TARGET_MARKET[activeTarget].description}
                </p>
             </div>
 
-            <div className="w-full max-w-sm h-1 bg-white/10 rounded-full mb-8 overflow-hidden">
+            <div className="w-full max-w-sm h-1 bg-white/10 rounded-full mb-6 overflow-hidden">
                <div 
                  className="h-full bg-[#98D8A0] transition-all duration-[50ms] ease-linear rounded-full" 
                  style={{ width: `${isCarouselHovered ? 100 : progress}%` }}
@@ -709,15 +709,15 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <div className="w-full max-w-7xl px-0 md:px-8">
               <h4 className="text-white/80 font-medium mb-6 font-serif tracking-widest text-[10px] md:text-xs uppercase opacity-80">Pilih Tipe Pesanan Anda</h4>
               
-              <div className="flex gap-4 md:gap-6 pb-8 pt-2 w-full mx-auto justify-center px-4 md:px-0">
+              <div className="flex gap-3 md:gap-4 pb-6 pt-2 w-full mx-auto justify-center px-4 md:px-0">
                 {TARGET_MARKET.map((target, idx) => (
                   <div 
                     key={idx} 
                     onClick={() => setActiveTarget(idx)}
-                    className={`relative flex-none snap-center cursor-pointer transition-all duration-500 rounded-3xl overflow-hidden 
+                    className={`relative flex-none snap-center cursor-pointer transition-all duration-500 rounded-2xl overflow-hidden 
                       ${activeTarget === idx 
-                        ? 'w-[200px] md:w-[280px] h-[120px] md:h-[150px] shadow-[0_10px_40px_rgba(152,216,160,0.3)] ring-2 ring-[#98D8A0] scale-100' 
-                        : 'w-[150px] md:w-[200px] h-[100px] md:h-[120px] opacity-60 hover:opacity-100 hover:scale-105 scale-95'
+                        ? 'w-[160px] md:w-[220px] h-[90px] md:h-[120px] shadow-[0_10px_40px_rgba(152,216,160,0.3)] ring-2 ring-[#98D8A0] scale-100' 
+                        : 'w-[120px] md:w-[160px] h-[70px] md:h-[90px] opacity-60 hover:opacity-100 hover:scale-105 scale-95'
                       }`}
                   >
                     <img src={target.images[0]} alt={target.title} className="w-full h-full object-cover" />
@@ -736,33 +736,33 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </section>
 
       {/* ========== LOCAL TOURISM WITH CAROUSEL ========== */}
-      <section id="wisata" className="pt-16 pb-24 bg-white px-4">
+      <section id="wisata" className="py-12 bg-white px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-2 text-[#163a28] text-sm font-bold uppercase tracking-widest mb-3">
               <Navigation className="h-4 w-4" /> Destinasi
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#163a28] mb-4">Wisata Sekitar</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Wisata Sekitar</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base">Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {WISATA.map((w, idx) => {
               const cKey = `wisata_${idx}`;
               return (
                 <div key={idx} className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
-                  <div className="relative h-60 w-full overflow-hidden group">
+                  <div className="relative h-48 w-full overflow-hidden group">
                     <img src={w.images[0]} alt={w.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#163a28]/90 via-transparent to-transparent group-hover:from-[#163a28]/80 transition-colors" />
 
-                    <div className="absolute bottom-5 left-5 flex items-center gap-3 z-10">
-                      <span className="text-white text-sm font-semibold bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">
-                        <Clock className="h-3.5 w-3.5" /> {w.distance}
+                    <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
+                      <span className="text-white text-xs font-semibold bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">
+                        <Clock className="h-3 w-3" /> {w.distance}
                       </span>
                     </div>
                   </div>
-                  <div className="p-8">
-                    <h3 className="font-serif font-bold text-2xl text-[#163a28] mb-3 group-hover:text-[#235c40] transition-colors">{w.name}</h3>
+                  <div className="p-6">
+                    <h3 className="font-serif font-bold text-xl text-[#163a28] mb-2 group-hover:text-[#235c40] transition-colors">{w.name}</h3>
                     <p className="text-gray-500 leading-relaxed text-sm">{w.description}</p>
                   </div>
                 </div>
@@ -883,6 +883,17 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
           </div>
         </div>
       </footer>
+
+      {/* ========== FLOATING WHATSAPP BUTTON ========== */}
+      <a 
+        href="https://wa.me/628112333838?text=Halo%20Admin,%20saya%20ingin%20tanya%20informasi%20Villa%20Kampung%20Gunung."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3.5 md:p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-[#20b858] transition-all duration-300 flex items-center justify-center animate-bounce"
+        aria-label="Chat WhatsApp"
+      >
+        <MessageCircle className="h-6 w-6 md:h-7 md:w-7" />
+      </a>
     </main>
   );
 }

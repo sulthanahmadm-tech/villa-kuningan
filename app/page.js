@@ -82,7 +82,7 @@ const WISATA = [
     description: 'Nikmati kemudahan akses QR-code digital ticketing yang terintegrasi. Rasakan kesejukan air terjun alami yang dilengkapi fasilitas smart-locker IoT untuk keamanan barang bawaan Anda.',
     distance: '10 menit dari villa',
     images: [
-      '/images/curug-putri.png'
+      '/images/curug-putri.jpg'
     ],
     icon: Waves,
     gmapsUrl: 'https://www.google.com/maps/search/Curug+Putri+Palutungan'
@@ -92,7 +92,7 @@ const WISATA = [
     description: 'Wisata sejarah imersif. Pindai ruangan dengan smartphone Anda untuk menikmati fitur Augmented Reality (AR) yang menghidupkan kembali momen krusial kemerdekaan RI.',
     distance: '20 menit dari villa',
     images: [
-      '/images/linggarjati.png'
+      '/images/linggarjati.jpg'
     ],
     icon: Mountain,
     gmapsUrl: 'https://www.google.com/maps/search/Gedung+Perundingan+Linggarjati'
@@ -102,7 +102,7 @@ const WISATA = [
     description: 'Kawasan eco-tourism modern dengan bentangan air yang luas. Kami menyediakan layanan smart-booking untuk area piknik eksklusif keluarga Anda di tepi waduk.',
     distance: '25 menit dari villa',
     images: [
-      '/images/waduk-darma.png'
+      '/images/waduk-darma.jpg'
     ],
     icon: TreePine,
     gmapsUrl: 'https://www.google.com/maps/search/Waduk+Darma'

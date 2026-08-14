@@ -469,14 +469,14 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </div>
 
       {/* ========== HIGHLIGHT ACTIVITIES (BENTO GRID) ========== */}
-      <section id="activities" className="py-12 bg-white px-4">
+      <section id="activities" className="py-12 lg:py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Aktivitas & Kebersamaan</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-base">Bangun keakraban tim Anda melalui berbagai aktivitas seru di venue kami yang luas.</p>
+          <div className="text-center mb-10 lg:mb-16">
+            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-[#163a28] mb-3 lg:mb-4">Aktivitas & Kebersamaan</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto text-base lg:text-lg">Bangun keakraban tim Anda melalui berbagai aktivitas seru di venue kami yang luas.</p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-4 md:grid-rows-2 gap-4 h-[400px] md:h-[500px] pb-4 md:pb-0">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-4 md:grid-rows-2 md:overflow-visible gap-4 h-[400px] md:h-[600px] pb-4 md:pb-0">
             {/* Api Unggun (Besar) */}
             <div className="w-[85vw] flex-shrink-0 snap-center md:w-auto md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.apiUnggun} alt="Api Unggun" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -534,14 +534,14 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </section>
 
       {/* ========== PAKET EXPERIENCE (Menggantikan Rooms) ========== */}
-      <section id="packages" className="py-12 bg-[#F0F4F1] px-4">
+      <section id="packages" className="py-12 lg:py-24 bg-[#F0F4F1] px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Pilihan Paket Experience</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base">Solusi hemat dan praktis untuk event berskala besar Anda.</p>
+          <div className="text-center mb-10 lg:mb-16">
+            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-[#163a28] mb-3 lg:mb-4">Pilihan Paket Experience</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base lg:text-lg">Solusi hemat dan praktis untuk event berskala besar Anda.</p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 gap-6 items-stretch pb-6 lg:pb-0">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible gap-6 lg:gap-8 items-stretch pb-6 lg:pb-0">
             {PAKET_EXPERIENCE.map((paket) => (
               <div key={paket.id} className={`w-[85vw] lg:w-auto flex-shrink-0 snap-center bg-white rounded-3xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 ${paket.highlight ? 'border-4 border-[#163a28] shadow-2xl lg:scale-105 lg:z-10' : 'border border-gray-200 shadow-lg'}`}>
                 {paket.highlight && (
@@ -549,15 +549,15 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                     Most Popular
                   </div>
                 )}
-                <div className="relative h-48">
+                <div className="relative h-48 lg:h-56">
                   <img src={paket.image} alt={paket.name} className="w-full h-full object-cover" />
                   <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur text-[#163a28] text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
                     <Users className="h-3.5 w-3.5" /> {paket.capacity}
                   </div>
                 </div>
                 
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="mb-2 text-[#98D8A0] font-bold text-xs tracking-wide">{paket.subtitle}</div>
+                <div className="p-6 lg:p-8 flex flex-col flex-1">
+                  <div className="mb-2 text-[#98D8A0] font-bold text-xs lg:text-sm tracking-wide">{paket.subtitle}</div>
                   <h3 className="font-serif font-bold text-2xl text-[#163a28] mb-4">{paket.name}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{paket.description}</p>
                   
@@ -709,15 +709,15 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <div className="w-full max-w-7xl px-0 md:px-8">
               <h4 className="text-white/80 font-medium mb-6 font-serif tracking-widest text-[10px] md:text-xs uppercase opacity-80">Pilih Tipe Pesanan Anda</h4>
               
-              <div className="flex gap-3 md:gap-4 pb-6 pt-2 w-full mx-auto justify-center px-4 md:px-0">
+              <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-3 lg:gap-6 pb-6 pt-2 w-full px-4 md:px-8">
                 {TARGET_MARKET.map((target, idx) => (
                   <div 
                     key={idx} 
                     onClick={() => setActiveTarget(idx)}
-                    className={`relative flex-none snap-center cursor-pointer transition-all duration-500 rounded-2xl overflow-hidden 
+                    className={`relative flex-none snap-center cursor-pointer transition-all duration-500 rounded-2xl lg:rounded-3xl overflow-hidden 
                       ${activeTarget === idx 
-                        ? 'w-[160px] md:w-[220px] h-[90px] md:h-[120px] shadow-[0_10px_40px_rgba(152,216,160,0.3)] ring-2 ring-[#98D8A0] scale-100' 
-                        : 'w-[120px] md:w-[160px] h-[70px] md:h-[90px] opacity-60 hover:opacity-100 hover:scale-105 scale-95'
+                        ? 'w-[160px] md:w-[280px] h-[90px] md:h-[150px] shadow-[0_10px_40px_rgba(152,216,160,0.3)] ring-2 ring-[#98D8A0] scale-100' 
+                        : 'w-[120px] md:w-[200px] h-[70px] md:h-[120px] opacity-60 hover:opacity-100 hover:scale-105 scale-95'
                       }`}
                   >
                     <img src={target.images[0]} alt={target.title} className="w-full h-full object-cover" />
@@ -736,33 +736,33 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       </section>
 
       {/* ========== LOCAL TOURISM WITH CAROUSEL ========== */}
-      <section id="wisata" className="py-12 bg-white px-4">
+      <section id="wisata" className="py-12 lg:pt-16 lg:pb-24 bg-white px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10 lg:mb-16">
             <div className="flex items-center justify-center gap-2 text-[#163a28] text-sm font-bold uppercase tracking-widest mb-3">
               <Navigation className="h-4 w-4" /> Destinasi
             </div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#163a28] mb-3">Wisata Sekitar</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base">Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan</p>
+            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-[#163a28] mb-3 lg:mb-4">Wisata Sekitar</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base lg:text-lg">Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan</p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 gap-6 pb-6 md:pb-0">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 md:overflow-visible gap-6 lg:gap-8 pb-6 md:pb-0">
             {WISATA.map((w, idx) => {
               const cKey = `wisata_${idx}`;
               return (
                 <div key={idx} className="w-[85vw] flex-shrink-0 snap-center md:w-auto bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
-                  <div className="relative h-48 w-full overflow-hidden group">
+                  <div className="relative h-48 lg:h-60 w-full overflow-hidden group">
                     <img src={w.images[0]} alt={w.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#163a28]/90 via-transparent to-transparent group-hover:from-[#163a28]/80 transition-colors" />
 
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
-                      <span className="text-white text-xs font-semibold bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">
-                        <Clock className="h-3 w-3" /> {w.distance}
+                    <div className="absolute bottom-4 left-4 lg:bottom-5 lg:left-5 flex items-center gap-2 lg:gap-3 z-10">
+                      <span className="text-white text-xs lg:text-sm font-semibold bg-black/30 backdrop-blur-md px-3 lg:px-3.5 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">
+                        <Clock className="h-3 w-3 lg:h-3.5 lg:w-3.5" /> {w.distance}
                       </span>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-serif font-bold text-xl text-[#163a28] mb-2 group-hover:text-[#235c40] transition-colors">{w.name}</h3>
+                  <div className="p-6 lg:p-8">
+                    <h3 className="font-serif font-bold text-xl lg:text-2xl text-[#163a28] mb-2 lg:mb-3 group-hover:text-[#235c40] transition-colors">{w.name}</h3>
                     <p className="text-gray-500 leading-relaxed text-sm">{w.description}</p>
                   </div>
                 </div>

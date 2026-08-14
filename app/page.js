@@ -476,9 +476,9 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <p className="text-gray-500 max-w-2xl mx-auto text-base">Bangun keakraban tim Anda melalui berbagai aktivitas seru di venue kami yang luas.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[500px]">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-4 md:grid-rows-2 gap-4 h-[400px] md:h-[500px] pb-4 md:pb-0">
             {/* Api Unggun (Besar) */}
-            <div className="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
+            <div className="w-[85vw] flex-shrink-0 snap-center md:w-auto md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.apiUnggun} alt="Api Unggun" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
@@ -491,7 +491,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             </div>
 
             {/* Games & Team Building */}
-            <div className="md:col-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
+            <div className="w-[85vw] flex-shrink-0 snap-center md:w-auto md:col-span-2 relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.games} alt="Team Building" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
@@ -504,7 +504,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             </div>
 
             {/* Karaoke Outdoor */}
-            <div className="relative rounded-3xl overflow-hidden group shadow-lg">
+            <div className="w-[85vw] flex-shrink-0 snap-center md:w-auto relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.karaoke} alt="Karaoke Outdoor" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
@@ -517,7 +517,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             </div>
 
             {/* Makan Bareng */}
-            <div className="relative rounded-3xl overflow-hidden group shadow-lg">
+            <div className="w-[85vw] flex-shrink-0 snap-center md:w-auto relative rounded-3xl overflow-hidden group shadow-lg">
               <img src={IMAGES.activities.makan} alt="Makan Bareng" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
@@ -541,9 +541,9 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <p className="text-gray-600 max-w-2xl mx-auto text-base">Solusi hemat dan praktis untuk event berskala besar Anda.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 gap-6 items-stretch pb-6 lg:pb-0">
             {PAKET_EXPERIENCE.map((paket) => (
-              <div key={paket.id} className={`bg-white rounded-3xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 ${paket.highlight ? 'border-4 border-[#163a28] shadow-2xl scale-105 z-10' : 'border border-gray-200 shadow-lg'}`}>
+              <div key={paket.id} className={`w-[85vw] lg:w-auto flex-shrink-0 snap-center bg-white rounded-3xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 ${paket.highlight ? 'border-4 border-[#163a28] shadow-2xl lg:scale-105 lg:z-10' : 'border border-gray-200 shadow-lg'}`}>
                 {paket.highlight && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#163a28] text-[#98D8A0] font-bold text-xs uppercase tracking-widest py-1.5 px-6 rounded-b-xl z-20">
                     Most Popular
@@ -746,11 +746,11 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <p className="text-gray-600 max-w-2xl mx-auto text-base">Jelajahi keindahan alam dan tempat wisata menarik di sekitar Kuningan</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 gap-6 pb-6 md:pb-0">
             {WISATA.map((w, idx) => {
               const cKey = `wisata_${idx}`;
               return (
-                <div key={idx} className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
+                <div key={idx} className="w-[85vw] flex-shrink-0 snap-center md:w-auto bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
                   <div className="relative h-48 w-full overflow-hidden group">
                     <img src={w.images[0]} alt={w.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#163a28]/90 via-transparent to-transparent group-hover:from-[#163a28]/80 transition-colors" />

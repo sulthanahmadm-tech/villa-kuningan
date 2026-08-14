@@ -169,6 +169,26 @@ const TARGET_MARKET = [
       'https://picsum.photos/seed/private3/1200/800',
     ]
   },
+  {
+    id: 'intimate-wedding',
+    title: 'Intimate Wedding',
+    description: 'Wujudkan pernikahan impian dengan konsep intimate yang syahdu dan tak terlupakan di tengah suasana alam nan romantis.',
+    images: [
+      'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
+      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=80',
+    ]
+  },
+  {
+    id: 'pesantren-kilat',
+    title: 'Pesantren Kilat (Sanlat)',
+    description: 'Fasilitas luas yang asri dan tenang, sangat mendukung kegiatan rohani, ibadah, serta pembelajaran secara fokus dan kondusif.',
+    images: [
+      'https://images.unsplash.com/photo-1579970979502-32a225492d6e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&q=80',
+      'https://images.unsplash.com/photo-1606887552554-3c8702c89f53?w=1200&q=80',
+    ]
+  }
 ];
 
 function formatRupiah(num) {
@@ -294,6 +314,10 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
       message = 'Halo Admin, saya mewakili komunitas dan ingin konsultasi mengenai penyelenggaraan Community Gathering di pendopo joglo Villa Kampung Gunung. Bisa bantu detailnya?';
     } else if (targetId === 'corporate') {
       message = 'Halo Admin, saya butuh bantuan untuk konsultasi Corporate Gathering (Event/Capacity Building) dari perusahaan saya di Villa Kampung Gunung. Mohon informasi fasilitas dan harganya.';
+    } else if (targetId === 'intimate-wedding') {
+      message = 'Halo Admin, saya ingin konsultasi mengenai paket Intimate Wedding di Villa Kampung Gunung. Boleh minta informasi detail paket dan harganya?';
+    } else if (targetId === 'pesantren-kilat') {
+      message = 'Halo Admin, saya ingin mengadakan kegiatan Pesantren Kilat (Sanlat) di Villa Kampung Gunung. Boleh info detail kapasitas, fasilitas, dan biayanya?';
     }
     window.open(`https://wa.me/628112333838?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -727,17 +751,9 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
               const cKey = `wisata_${idx}`;
               return (
                 <div key={idx} className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative border border-gray-100">
-                  <div className="relative h-60 w-full overflow-hidden">
-                    <div className="flex h-full transition-transform duration-500" style={{ transform: `translateX(-${(carouselIndexes[cKey] || 0) * 100}%)` }}>
-                      {w.images.map((img, i) => (
-                        <img key={i} src={img} alt="Destinasi Wisata" className="w-full h-full object-cover flex-shrink-0 group-hover:scale-110 transition-transform duration-1000" />
-                      ))}
-                    </div>
-
+                  <div className="relative h-60 w-full overflow-hidden group">
+                    <img src={w.images[0]} alt={w.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#163a28]/90 via-transparent to-transparent group-hover:from-[#163a28]/80 transition-colors" />
-
-                    <button onClick={(e) => prevSlide(cKey, w.images.length, e)} className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"><ChevronLeft className="h-5 w-5" /></button>
-                    <button onClick={(e) => nextSlide(cKey, w.images.length, e)} className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"><ChevronRight className="h-5 w-5" /></button>
 
                     <div className="absolute bottom-5 left-5 flex items-center gap-3 z-10">
                       <span className="text-white text-sm font-semibold bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">

@@ -603,12 +603,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Deretan Kenangan Bersama Kami</h2>
             <p className="text-[#a3bfae] max-w-2xl mx-auto text-lg">Apapun agendanya, temukan harmoni dan pertumbuhan di sini.</p>
             
-            {/* INSTRUCTION: Add info for private booking as requested */}
-            <div className="mt-4 inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-2">
-              <p className="text-yellow-400 text-sm font-semibold flex items-center gap-2">
-                <BedDouble className="h-4 w-4" /> Kami juga melayani pemesanan kamar untuk Private Retreat & Keluarga
-              </p>
-            </div>
+
           </div>
 
           <div 

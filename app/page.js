@@ -205,11 +205,6 @@ export default function Home() {
     SoundSystem: false
   });
 
-  // Cancellation Flow state
-  const [cancelOpen, setCancelOpen] = useState(false);
-  const [searchCancelId, setSearchCancelId] = useState('');
-  const [foundReservation, setFoundReservation] = useState(null);
-  const [cancelStatus, setCancelStatus] = useState('idle');
 
   // UI layout state
   const [carouselIndexes, setCarouselIndexes] = useState({});
@@ -236,7 +231,7 @@ export default function Home() {
   // Auto-play Sub-Carousel
   useEffect(() => {
     if (isCarouselHovered) return;
-    setProgress(0);
+    setTimeout(() => setProgress(0), 0);
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -250,8 +245,10 @@ export default function Home() {
   }, [isCarouselHovered, activeSubSlide, activeTarget]);
 
   useEffect(() => {
-    setActiveSubSlide(0);
-    setProgress(0);
+    setTimeout(() => {
+      setActiveSubSlide(0);
+      setProgress(0);
+    }, 0);
   }, [activeTarget]);
 
   const handleTouchStart = (e) => {
@@ -457,12 +454,12 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
           <div className="flex flex-col md:flex-row justify-around items-center gap-6 text-center">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-8 w-8 text-[#98D8A0]" />
-              <h4 className="text-white font-serif text-xl md:text-2xl font-bold">"Tempat gathering 100 orang tapi serasa private!"</h4>
+              <h4 className="text-white font-serif text-xl md:text-2xl font-bold">&quot;Tempat gathering 100 orang tapi serasa private!&quot;</h4>
             </div>
             <div className="hidden md:block w-px h-12 bg-white/20"></div>
             <div className="flex items-center gap-3">
               <MapPin className="h-8 w-8 text-[#98D8A0]" />
-              <h4 className="text-white font-serif text-xl md:text-2xl font-bold">"Hidden place buat reuni & komunitas di Kuningan"</h4>
+              <h4 className="text-white font-serif text-xl md:text-2xl font-bold">&quot;Hidden place buat reuni &amp; komunitas di Kuningan&quot;</h4>
             </div>
           </div>
         </div>

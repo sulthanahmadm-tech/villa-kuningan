@@ -140,7 +140,7 @@ const TARGET_MARKET = [
   {
     id: 'Family',
     title: 'Family Gathering',
-    description: 'Sesi berbagi yang cair dan penuh inspirasi di pendopo joglo yang harmonis, cocok untuk reuni akbar.',
+    description: 'Tempat meluapkan kantung rindu di lingkungan joglo yang harmonis dengan keasrian hutan pinus dan suasana yang hangat kekeluargaan.',
     images: [
       '/images/kenangan/Family/family 1.jpeg',
       '/images/kenangan/Family/family 2.jpeg',
@@ -544,7 +544,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                     <Flame className="text-white h-5 w-5" />
                   </div>
                   <h3 className="text-white font-serif font-bold text-2xl mb-2">Malam Api Unggun</h3>
-                  <p className="text-gray-200 text-sm">Momen hangat berbagi cerita di bawah langit malam Kuningan, fasilitas kayu bakar tersedia.</p>
+                  <p className="text-gray-200 text-sm">Momen hangat berbagi cerita di bawah langit malam Kuningan dengan hangatnya api unggun.</p>
                 </div>
               </div>
 

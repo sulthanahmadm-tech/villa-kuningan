@@ -30,6 +30,7 @@ IMAGE URLS & MOCK DATA
 const IMAGES = {
   // Menggunakan placeholder dari Unsplash untuk suasana gathering
   hero: '/images/hero-kampung-gunung.jpeg',
+  heroMobile: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=1200&fit=crop',
   activities: {
     apiUnggun: '/images/api unggun.jpeg',
     karaoke: '/images/karoke villa.jpeg',
@@ -422,7 +423,12 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
         {/* ========== HERO CORE SECTION (B2B) ========== */}
         <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
-          <Image src={IMAGES.hero} alt="Pemandangan luas fasilitas gathering berkapasitas besar di Villa Kampung Gunung dengan nuansa alam pegunungan yang asri" fill priority sizes="100vw" className="object-cover scale-105" />
+          {/* Desktop Image (Landscape) */}
+          <Image src={IMAGES.hero} alt="Pemandangan luas fasilitas gathering berkapasitas besar di Villa Kampung Gunung dengan nuansa alam pegunungan yang asri" fill priority sizes="100vw" className="hidden md:block object-cover scale-105" />
+          
+          {/* Mobile Image (Portrait) */}
+          <Image src={IMAGES.heroMobile} alt="Pemandangan asri Villa Kampung Gunung dari layar HP" fill priority sizes="100vw" className="block md:hidden object-cover scale-105" />
+          
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d2818]/90 via-[#0d2818]/70 to-transparent" />
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

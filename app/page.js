@@ -30,7 +30,7 @@ IMAGE URLS & MOCK DATA
 const IMAGES = {
   // Menggunakan placeholder dari Unsplash untuk suasana gathering
   hero: '/images/hero-kampung-gunung.jpeg',
-  heroMobile:'/images/hero-m-kampung-gunung.png',
+  heroMobile:'/images/hero-m-kampung-gunung.jpeg',
   activities: {
     apiUnggun: '/images/api unggun.jpeg',
     karaoke: '/images/karoke villa.jpeg',
@@ -136,6 +136,8 @@ const TARGET_MARKET = [
       '/images/kenangan/comunity/komunitas 1.jpeg',
       '/images/kenangan/comunity/komunitas 2.jpeg',
       '/images/kenangan/comunity/komunitas 3.jpeg',
+      '/images/kenangan/comunity/komunitas 4.png',
+      '/images/kenangan/comunity/komunitas 5.png',
     ]
   },
   {

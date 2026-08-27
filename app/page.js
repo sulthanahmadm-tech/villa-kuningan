@@ -387,7 +387,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
         <header className="fixed top-0 w-full z-50 bg-[#163a28]/95 backdrop-blur-xl border-b border-white/20 shadow-lg">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <a href="#hero" className="flex items-center gap-2">
-              <Leaf className="h-6 w-6 text-[#98D8A0]" />
+              <Image src="/images/logo-vkg.png" alt="Villa Kampung Gunung Logo" width={36} height={36} className="h-8 w-8 object-contain drop-shadow-md" />
               <span className="text-white font-serif font-bold text-xl tracking-tight">Villa Kampung Gunung</span>
             </a>
             <div className="hidden md:flex items-center gap-8">
@@ -891,7 +891,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
               <div className="lg:col-span-1">
                 <div className="flex items-center gap-3 mb-6">
-                  <Leaf className="h-8 w-8 text-[#98D8A0]" />
+                  <Image src="/images/logo-vkg.png" alt="Villa Kampung Gunung Logo" width={48} height={48} className="h-12 w-12 object-contain" />
                   <span className="font-serif font-bold text-2xl text-white leading-tight">Villa Kampung Gunung</span>
                 </div>
                 <p className="text-[#a3bfae] text-sm leading-loose mb-8">

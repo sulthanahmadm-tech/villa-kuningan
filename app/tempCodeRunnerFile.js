@@ -46,7 +46,7 @@ const PAKET_EXPERIENCE = [
     subtitle: '1 Hari 1 Malam',
     priceText: 'Mulai dari Rp 7 Juta (50 Orang)',
     capacity: '50-120 Orang',
-    description: 'Fasilitas super lengkap untuk gathering kantor, rapat tahunan, atau perayaan bareng tim dengan nuansa alam yang menyegarkan.',
+    description: 'Fasilitas komprehensif untuk employee gathering, rapat tahunan, atau selebrasi pencapaian perusahaan dengan nuansa alam yang menyegarkan.',
     features: ['Seluruh Area Villa', 'Meeting Hall', 'Sound System', 'Api Unggun', 'Opsional Catering'],
     image: '/images/paket corporate.jpeg'
   },
@@ -56,7 +56,7 @@ const PAKET_EXPERIENCE = [
     subtitle: 'Program Intensif & Menyenangkan',
     priceText: 'Custom sesuai kebutuhan',
     capacity: '50-100 Orang',
-    description: 'Dilengkapi dengan fasilitator profesional, outbound, dan permainan seru untuk bikin tim makin kompak dan solid.',
+    description: 'Dilengkapi dengan fasilitator profesional, outbound, dan simulasi tim untuk meningkatkan kohesivitas dan komunikasi antar anggota.',
     features: ['Fasilitator Profesional', 'Peralatan Outbound', 'Games Station', 'Ice Breaking', 'Sertifikat Opsional'],
     image: '/images/paket character.jpeg',
     highlight: true
@@ -76,7 +76,7 @@ const PAKET_EXPERIENCE = [
 const WISATA = [
   {
     name: 'Curug Putri Palutungan',
-    description: 'Akses masuk yang mudah dengan fasilitas wisata yang tertata rapi. Sangat cocok untuk menikmati kesejukan air terjun alami sehabis acara.',
+    description: 'Nikmati kemudahan akses QR-code digital ticketing yang terintegrasi. Rasakan kesejukan air terjun alami yang dilengkapi fasilitas smart-locker IoT untuk keamanan barang bawaan Anda.',
     distance: '10 menit dari villa',
     images: [
       '/images/curug-putri.jpg'
@@ -86,7 +86,7 @@ const WISATA = [
   },
   {
     name: 'Gedung Perundingan Linggarjati',
-    description: 'Wisata sejarah yang terawat dengan baik. Lokasinya sangat dekat untuk melengkapi agenda jalan-jalan santai rombongan.',
+    description: 'Wisata sejarah imersif. Pindai ruangan dengan smartphone Anda untuk menikmati fitur Augmented Reality (AR) yang menghidupkan kembali momen krusial kemerdekaan RI.',
     distance: '20 menit dari villa',
     images: [
       '/images/linggarjati.jpg'
@@ -96,7 +96,7 @@ const WISATA = [
   },
   {
     name: 'Waduk Darma',
-    description: 'Nikmati pemandangan hamparan air yang luas. Sangat cocok untuk piknik santai menikmati angin sore bersama rombongan.',
+    description: 'Kawasan eco-tourism modern dengan bentangan air yang luas. Kami menyediakan layanan smart-booking untuk area piknik eksklusif keluarga Anda di tepi waduk.',
     distance: '25 menit dari villa',
     images: [
       '/images/waduk-darma.jpg'
@@ -115,7 +115,7 @@ const TARGET_MARKET = [
   {
     id: 'corporate',
     title: 'Corporate Gathering',
-    description: 'Tingkatkan produktivitas tim melalui kegiatan seru bareng tim di tengah asrinya alam yang menyegarkan pikiran.',
+    description: 'Tingkatkan produktivitas tim melalui capacity building di tengah harmoni alam hijau yang menyegarkan pikiran.',
     images: [
       '/images/kenangan/corporate/corporate 1.jpeg',
       '/images/kenangan/corporate/corporate 2.jpeg',
@@ -131,11 +131,11 @@ const TARGET_MARKET = [
   {
     id: 'community',
     title: 'Community Gathering',
-    description: 'Ngobrol santai dan reuni seru di pendopo joglo yang luas dan nyaman.',
+    description: 'Sesi berbagi yang cair dan penuh inspirasi di pendopo joglo yang harmonis, cocok untuk reuni akbar.',
     images: [
       '/images/kenangan/comunity/komunitas 1.jpeg',
       '/images/kenangan/comunity/komunitas 2.jpeg',
-      '/images/kenangan/comunity/komunitas-3-fix.jpeg',
+      '/images/kenangan/comunity/komunitas 3.jpeg',
       '/images/kenangan/comunity/komunitas 4.png',
       '/images/kenangan/comunity/komunitas 5.png',
     ]
@@ -143,7 +143,7 @@ const TARGET_MARKET = [
   {
     id: 'Family',
     title: 'Family Gathering',
-    description: 'Tempat nyaman buat kumpul keluarga besar dengan suasana hangat dan asri.',
+    description: 'Tempat meluapkan kantung rindu di lingkungan joglo yang harmonis dengan keasrian hutan pinus dan suasana yang hangat kekeluargaan.',
     images: [
       '/images/kenangan/Family/family 1.jpeg',
       '/images/kenangan/Family/family 2.jpeg',
@@ -398,7 +398,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
               <a href="#packages" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Paket Experience</a>
               <a href="#wisata" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Wisata</a>
               <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-transform shadow-md">
-                <MessageCircle className="h-4 w-4" /> Tanya Paket
+                <MessageCircle className="h-4 w-4" /> Konsultasi Gathering
               </a>
             </div>
             <button
@@ -443,13 +443,13 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
               </h1>
 
               <p className="text-base md:text-lg text-white/90 mb-6 max-w-lg drop-shadow-md font-medium leading-relaxed">
-                Tempat Ngumpul Seru Dengan Kapasitas Besar (Muat hingga 120 Orang). Nikmati momen tak terlupakan dengan fasilitas lengkap di tengah hutan tropis Kuningan.
+                Tempat Ngumpul Seru Dengan Kapasitas Besar (Hingga 120 Orang). Nikmati momen tak terlupakan dengan fasilitas lengkap di tengah hutan tropis Kuningan.
               </p>
 
               <div className="flex flex-wrap gap-3 mb-6">
                 <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-xl px-4 py-2 border border-white/10">
                   <Users className="h-5 w-5 text-yellow-400" />
-                  <span className="text-white text-sm font-medium">Muat hingga 120 Orang</span>
+                  <span className="text-white text-sm font-medium">Kapasitas S.d 120 Orang</span>
                 </div>
                 <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-xl px-4 py-2 border border-white/10">
                   <Mountain className="h-5 w-5 text-green-400" />
@@ -461,7 +461,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
             {/* EVENT INQUIRY FORM (LEAD GENERATION) */}
             <div className="bg-white rounded-2xl p-5 md:p-6 shadow-xl border-t-4 border-[#163a28]">
               <h2 className="text-xl font-serif font-bold text-[#163a28] mb-1">Rencanakan Event Anda</h2>
-              <p className="text-gray-500 text-xs mb-4">Dapatkan rincian harga dan info jadwal kosong dari tim kami.</p>
+              <p className="text-gray-500 text-xs mb-4">Dapatkan proposal penawaran harga dan ketersediaan jadwal terbaik dari tim kami.</p>
 
               <div className="space-y-4">
                 <div>
@@ -509,7 +509,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 </div>
 
                 <Button onClick={handleSendProposal} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-10 rounded-lg text-sm font-bold tracking-wide shadow-md transition-transform active:scale-95 mt-2 group">
-                  <Send className="h-3 w-3 mr-2 group-hover:animate-pulse" /> Cek Harga & Jadwal
+                  <Send className="h-3 w-3 mr-2 group-hover:animate-pulse" /> Kirim Proposal
                 </Button>
               </div>
             </div>
@@ -669,7 +669,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
           <div className="max-w-7xl mx-auto relative z-10" onMouseEnter={() => setIsCarouselHovered(true)} onMouseLeave={() => setIsCarouselHovered(false)}>
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Pilihan Acara Anda</h2>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Deretan Kenangan Bersama Kami</h2>
               <p className="text-[#a3bfae] max-w-2xl mx-auto text-lg">Apapun agendanya, temukan harmoni dan pertumbuhan di sini.</p>
 
 
@@ -731,7 +731,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                           onClick={(e) => { e.stopPropagation(); handleTargetWA(TARGET_MARKET[activeTarget].id); }}
                           className="bg-[#98D8A0] hover:bg-[#7bc885] text-[#112419] font-bold py-2.5 px-6 rounded-full shadow-lg transition-transform active:scale-95 text-sm uppercase tracking-wider"
                         >
-                          {TARGET_MARKET[activeTarget].id === 'private' ? 'Cek Ketersediaan Kamar' : 'Tanya Paket Ini'}
+                          {TARGET_MARKET[activeTarget].id === 'private' ? 'Cek Ketersediaan Kamar' : 'Konsultasi Event'}
                         </button>
                       </div>
                     )}
@@ -882,10 +882,10 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
               <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
                 <h3 className="font-serif font-bold text-2xl text-[#163a28] mb-6">Siap Melaksanakan Event Anda?</h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-8">
-                  Jangan ragu untuk menghubungi tim kami. Kami siap membantu merencanakan acara kantor, reuni, atau gathering komunitas Anda dari awal hingga akhir dengan kelengkapan fasilitas yang kami sediakan.
+                  Jangan ragu untuk menghubungi tim kami. Kami siap membantu merencanakan acara kantor, reuni, atau gathering komunitas Anda dari awal hingga akhir dengan fasilitas B2B lengkap kami.
                 </p>
                 <Button onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-14 rounded-xl text-lg font-bold tracking-wide shadow-lg transition-transform active:scale-95 group">
-                  <Send className="h-5 w-5 mr-2 group-hover:animate-bounce" /> Chat via WhatsApp
+                  <Send className="h-5 w-5 mr-2 group-hover:animate-bounce" /> Kirim Detail Event
                 </Button>
               </div>
             </div>

@@ -548,9 +548,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 <Image src={IMAGES.activities.apiUnggun} alt="Suasana hangat malam api unggun di area terbuka Villa Kampung Gunung" fill sizes="(max-width: 768px) 85vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <div className="bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                    <Flame className="text-white h-5 w-5" />
-                  </div>
+
                   <h3 className="text-white font-serif font-bold text-2xl mb-2">Malam Api Unggun</h3>
                   <p className="text-gray-200 text-sm">Momen hangat berbagi cerita di bawah langit malam Kuningan dengan hangatnya api unggun.</p>
                 </div>
@@ -561,9 +559,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 <Image src={IMAGES.activities.games} alt="Aktivitas team building dan outbond seru di lapangan rumput luas Villa Kampung Gunung" fill sizes="(max-width: 768px) 85vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <div className="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                    <Tent className="text-white h-5 w-5" />
-                  </div>
+
                   <h3 className="text-white font-serif font-bold text-2xl mb-1">Games & Team Building</h3>
                   <p className="text-gray-200 text-sm">Tingkatkan kerjasama tim dengan area lapang hijau yang super luas.</p>
                 </div>
@@ -574,9 +570,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 <Image src={IMAGES.activities.karaoke} alt="Fasilitas karaoke outdoor dengan panggung mini dan sound system di bawah langit pegunungan Kuningan" fill sizes="(max-width: 768px) 85vw, 25vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <div className="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                    <Mic className="text-white h-5 w-5" />
-                  </div>
+
                   <h3 className="text-white font-serif font-bold text-xl mb-1">Karaoke Outdoor</h3>
                   <p className="text-gray-200 text-sm">Panggung mini & sound system siap menyemarakkan acara.</p>
                 </div>
@@ -587,9 +581,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 <Image src={IMAGES.activities.makan} alt="Sajian makan bersama prasmanan di area makan terbuka dengan pemandangan alam Villa Kampung Gunung" fill sizes="(max-width: 768px) 85vw, 25vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
-                  <div className="bg-emerald-500 w-10 h-10 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                    <UtensilsCrossed className="text-white h-5 w-5" />
-                  </div>
+
                   <h3 className="text-white font-serif font-bold text-xl mb-1">Makan Bareng</h3>
                   <p className="text-gray-200 text-sm">Opsional catering buffet atau BBQ set premium.</p>
                 </div>

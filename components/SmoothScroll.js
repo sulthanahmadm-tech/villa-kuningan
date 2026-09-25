@@ -13,6 +13,11 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
+    // Disable Lenis on mobile devices (width < 768px) to let native scroll handle touch natively and perfectly
+    if (window.innerWidth < 768) {
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

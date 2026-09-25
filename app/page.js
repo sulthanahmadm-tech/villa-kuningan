@@ -217,12 +217,12 @@ export default function Home() {
 
 
   // UI layout state
-  const [carouselIndexes, setCarouselIndexes] = useState({});
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTarget, setActiveTarget] = useState(0);
   const [activeSubSlide, setActiveSubSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isMobile, setIsMobile] = useState(false);
 
   // Lenis for programmatic scroll
   const lenisRef = useLenis();
@@ -258,9 +258,19 @@ export default function Home() {
       }
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Interactive Target Carousel States
@@ -311,17 +321,6 @@ export default function Home() {
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
-  };
-
-  /* ------ Carousel Logic ------ */
-  const nextSlide = (key, total, e) => {
-    e.stopPropagation();
-    setCarouselIndexes(prev => ({ ...prev, [key]: ((prev[key] || 0) + 1) % total }));
-  };
-
-  const prevSlide = (key, total, e) => {
-    e.stopPropagation();
-    setCarouselIndexes(prev => ({ ...prev, [key]: ((prev[key] || 0) - 1 + total) % total }));
   };
 
   /* ------ Handlers ------ */
@@ -477,7 +476,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                 id="mobile-menu"
-                className={`md:hidden absolute left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden shadow-2xl py-6 ${
+                className={`md:hidden absolute left-0 w-full bg-[#163a28] border-b border-white/10 overflow-hidden shadow-2xl py-6 ${
                   isScrolled ? 'top-16' : 'top-20'
                 }`}
               >
@@ -506,10 +505,9 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
         {/* ========== HERO CORE SECTION (B2B) ========== */}
         <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
-          {/* Desktop Image (Landscape) */}
-          <motion.div style={{ y: yHero }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+          {/* Desktop & Mobile Image Wrapper */}
+          <motion.div style={{ y: isMobile ? 0 : yHero, transform: 'translateZ(0)' }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
             <Image src={IMAGES.hero} alt="Pemandangan luas fasilitas gathering berkapasitas besar di Villa Kampung Gunung dengan nuansa alam pegunungan yang asri" fill priority sizes="100vw" className="hidden md:block object-cover" />
-            {/* Mobile Image (Portrait) */}
             <Image src={IMAGES.heroMobile} alt="Pemandangan asri Villa Kampung Gunung dari layar HP" fill priority sizes="100vw" className="block md:hidden object-cover" />
           </motion.div>
           

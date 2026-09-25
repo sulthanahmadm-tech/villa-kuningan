@@ -10,13 +10,11 @@ test.describe('Home Page E2E & Visual Tests', () => {
 
   test('Pengecekan Kritis Elemen Utama (Hero & Navigasi)', async ({ page }) => {
     // Memastikan judul Hero Section sesuai dengan teks yang ada di web
-    await expect(page.locator('h1')).toContainText('Villa Kampung Gunung');
+    await expect(page.locator('h1')).toContainText('Villa Khusus Gathering');
     
     // Memastikan tombol CTA WhatsApp Hero ada dan bisa diklik
-    const waButton = page.getByRole('button', { name: /Cari Villa/i }); // Berdasarkan snapshot, nama tombolnya "Cari Villa" atau kita sesuaikan.
-    // Berdasarkan page snapshot: ada button "Kelola Booking", "Cari Villa"
-    // Mari kita cek tombol yang sesuai.
-    await expect(page.locator('button:has-text("Cari Villa")')).toBeVisible();
+    const waButton = page.getByRole('button', { name: /Cek Harga & Jadwal/i });
+    await expect(waButton).toBeVisible();
   });
 
   test('Interaksi Carousel Target Market Berjalan Normal', async ({ page }) => {

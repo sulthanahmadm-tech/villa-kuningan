@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import Image from 'next/image';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 // Komponen UI Shadcn
 
@@ -214,6 +215,10 @@ export default function Home() {
   const [activeSubSlide, setActiveSubSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Parallax Hero
+  const { scrollY } = useScroll();
+  const yHero = useTransform(scrollY, [0, 1000], [0, 250]);
+
   // Scroll Listener
   useEffect(() => {
     const handleScroll = () => {
@@ -391,7 +396,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
               <a href="#activities" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Aktivitas</a>
               <a href="#packages" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Paket Experience</a>
               <a href="#wisata" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Wisata</a>
-              <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-transform shadow-md">
+              <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 shadow-md">
                 <MessageCircle className="h-4 w-4" /> Tanya Paket
               </a>
             </div>
@@ -407,23 +412,35 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
           </nav>
 
           {/* Mobile Navigation Drawer */}
-          <div id="mobile-menu" className={`md:hidden absolute top-20 left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-96 py-6 opacity-100 shadow-2xl' : 'max-h-0 py-0 opacity-0'}`}>
-            <div className="flex flex-col items-center gap-6">
-              <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Beranda</a>
-              <a href="#activities" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Aktivitas</a>
-              <a href="#packages" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Paket</a>
-              <a href="#wisata" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base">Wisata</a>
-            </div>
-          </div>
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                id="mobile-menu"
+                className="md:hidden absolute top-20 left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden shadow-2xl py-6"
+              >
+                <div className="flex flex-col items-center gap-6">
+                  <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Beranda</a>
+                  <a href="#activities" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Aktivitas</a>
+                  <a href="#packages" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Paket</a>
+                  <a href="#wisata" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Wisata</a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </header>
 
         {/* ========== HERO CORE SECTION (B2B) ========== */}
         <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
           {/* Desktop Image (Landscape) */}
-          <Image src={IMAGES.hero} alt="Pemandangan luas fasilitas gathering berkapasitas besar di Villa Kampung Gunung dengan nuansa alam pegunungan yang asri" fill priority sizes="100vw" className="hidden md:block object-cover scale-105" />
-          
-          {/* Mobile Image (Portrait) */}
-          <Image src={IMAGES.heroMobile} alt="Pemandangan asri Villa Kampung Gunung dari layar HP" fill priority sizes="100vw" className="block md:hidden object-cover scale-105" />
+          <motion.div style={{ y: yHero }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+            <Image src={IMAGES.hero} alt="Pemandangan luas fasilitas gathering berkapasitas besar di Villa Kampung Gunung dengan nuansa alam pegunungan yang asri" fill priority sizes="100vw" className="hidden md:block object-cover" />
+            {/* Mobile Image (Portrait) */}
+            <Image src={IMAGES.heroMobile} alt="Pemandangan asri Villa Kampung Gunung dari layar HP" fill priority sizes="100vw" className="block md:hidden object-cover" />
+          </motion.div>
           
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d2818]/90 via-[#0d2818]/70 to-transparent" />
 
@@ -502,7 +519,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                   </div>
                 </div>
 
-                <Button onClick={handleSendProposal} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-10 rounded-lg text-sm font-bold tracking-wide shadow-md transition-transform active:scale-95 mt-2 group">
+                <Button onClick={handleSendProposal} className="w-full bg-[#163a28] hover:bg-[#0d2618] text-white h-10 rounded-lg text-sm font-bold tracking-wide shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 mt-2 group">
                   <Send className="h-3 w-3 mr-2 group-hover:animate-pulse" /> Cek Harga & Jadwal
                 </Button>
               </div>
@@ -624,7 +641,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
                     <div className="pt-6 border-t border-gray-100 mt-auto">
                       <div className="font-bold text-[#163a28] text-lg mb-4">{paket.priceText}</div>
-                      <Button onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })} className={`w-full h-12 rounded-xl text-sm font-bold shadow-md transition-transform active:scale-95 ${paket.highlight ? 'bg-[#163a28] hover:bg-[#0d2618] text-white' : 'bg-[#e8f3ec] text-[#163a28] hover:bg-[#98D8A0] hover:text-[#112419]'}`}>
+                      <Button onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })} className={`w-full h-12 rounded-xl text-sm font-bold shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 ${paket.highlight ? 'bg-[#163a28] hover:bg-[#0d2618] text-white' : 'bg-[#e8f3ec] text-[#163a28] hover:bg-[#98D8A0] hover:text-[#112419]'}`}>
                         Pesan Paket Ini
                       </Button>
                     </div>
@@ -715,7 +732,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                         <h3 className="font-serif font-bold text-3xl md:text-4xl text-white mb-6 tracking-wide drop-shadow-lg">{TARGET_MARKET[activeTarget].title}</h3>
                         <button
                           onClick={(e) => { e.stopPropagation(); handleTargetWA(TARGET_MARKET[activeTarget].id); }}
-                          className="bg-[#98D8A0] hover:bg-[#7bc885] text-[#112419] font-bold py-2.5 px-6 rounded-full shadow-lg transition-transform active:scale-95 text-sm uppercase tracking-wider"
+                          className="bg-[#98D8A0] hover:bg-[#7bc885] text-[#112419] font-bold py-2.5 px-6 rounded-full shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 text-sm uppercase tracking-wider"
                         >
                           {TARGET_MARKET[activeTarget].id === 'private' ? 'Cek Ketersediaan Kamar' : 'Tanya Paket Ini'}
                         </button>

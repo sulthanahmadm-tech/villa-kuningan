@@ -23,7 +23,21 @@ export const metadata = {
     description: "Spesialis paket gathering perusahaan, makrab kampus, dan reuni keluarga di Kuningan, Jawa Barat. Kapasitas hingga 120 orang!",
     type: "website",
     locale: "id_ID",
-  }
+  },
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/logo-gelap.png',
+        href: '/logo-gelap.png',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/logo-terang.png',
+        href: '/logo-terang.png',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {

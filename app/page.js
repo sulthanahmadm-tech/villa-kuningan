@@ -5,14 +5,8 @@ import { Toaster, toast } from 'sonner';
 import Image from 'next/image';
 
 // Komponen UI Shadcn
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from '@/components/ui/dialog';
+
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 

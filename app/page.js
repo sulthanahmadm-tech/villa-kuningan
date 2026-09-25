@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Toaster, toast } from 'sonner';
 import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useLenis } from '@/components/SmoothScroll';
 
 // Komponen UI Shadcn
 
@@ -193,6 +194,13 @@ const TARGET_MARKET = [
   }
 ];
 
+const NAV_ITEMS = [
+  { id: 'hero', label: 'Beranda' },
+  { id: 'activities', label: 'Aktivitas' },
+  { id: 'packages', label: 'Paket Experience' },
+  { id: 'wisata', label: 'Wisata' },
+];
+
 function formatRupiah(num) {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
 }
@@ -214,17 +222,44 @@ export default function Home() {
   const [activeTarget, setActiveTarget] = useState(0);
   const [activeSubSlide, setActiveSubSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
+
+  // Lenis for programmatic scroll
+  const lenisRef = useLenis();
+
+  const scrollToSection = (id) => {
+    const lenis = lenisRef?.current;
+    if (lenis) {
+      lenis.scrollTo(`#${id}`, { offset: -80 });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Parallax Hero
   const { scrollY } = useScroll();
   const yHero = useTransform(scrollY, [0, 1000], [0, 250]);
 
-  // Scroll Listener
+  // Scroll Listener + Scroll Spy (combined)
   useEffect(() => {
+    const sectionIds = ['hero', 'activities', 'packages', 'wisata'];
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 300);
+      setIsScrolled(window.scrollY > 50);
+
+      // Scroll spy: find which section is currently in view
+      const scrollPosition = window.scrollY + 160;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -385,18 +420,40 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
         <Toaster richColors position="top-center" />
 
         {/* ========== NAVBAR FIXED ========== */}
-        <header className="fixed top-0 w-full z-50 bg-[#163a28]/95 backdrop-blur-xl border-b border-white/20 shadow-lg">
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-            <a href="#hero" className="flex items-center gap-2">
-              <Image src="/images/logo-vkg.png" alt="Villa Kampung Gunung Logo" width={36} height={36} className="h-8 w-8 object-contain drop-shadow-md" />
-              <span className="text-white font-serif font-bold text-xl tracking-tight">Villa Kampung Gunung</span>
-            </a>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#hero" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Beranda</a>
-              <a href="#activities" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Aktivitas</a>
-              <a href="#packages" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Paket Experience</a>
-              <a href="#wisata" className="text-white font-medium hover:text-[#98D8A0] transition-colors text-sm">Wisata</a>
-              <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 shadow-md">
+        <header className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
+          isScrolled
+            ? 'bg-[#163a28]/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] border-b border-white/15'
+            : 'bg-[#163a28]/60 backdrop-blur-md shadow-none border-b border-white/5'
+        }`}>
+          <nav className={`max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? 'h-16' : 'h-20'
+          }`}>
+            <button onClick={() => scrollToSection('hero')} className="flex items-center gap-2 group">
+              <Image src="/images/logo-vkg.png" alt="Villa Kampung Gunung Logo" width={36} height={36} className={`object-contain drop-shadow-md transition-all duration-500 ${isScrolled ? 'h-7 w-7' : 'h-8 w-8'}`} />
+              <span className="text-white font-serif font-bold text-xl tracking-tight group-hover:text-[#98D8A0] transition-colors">Villa Kampung Gunung</span>
+            </button>
+            <div className="hidden md:flex items-center gap-1">
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full ${
+                    activeSection === item.id
+                      ? 'text-white'
+                      : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 bg-white/15 rounded-full border border-white/10"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </button>
+              ))}
+              <a href="https://wa.me/628112333838" target="_blank" rel="noreferrer" className="ml-4 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 shadow-md">
                 <MessageCircle className="h-4 w-4" /> Tanya Paket
               </a>
             </div>
@@ -418,15 +475,29 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                 id="mobile-menu"
-                className="md:hidden absolute top-20 left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden shadow-2xl py-6"
+                className={`md:hidden absolute left-0 w-full bg-[#163a28]/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden shadow-2xl py-6 ${
+                  isScrolled ? 'top-16' : 'top-20'
+                }`}
               >
-                <div className="flex flex-col items-center gap-6">
-                  <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Beranda</a>
-                  <a href="#activities" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Aktivitas</a>
-                  <a href="#packages" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Paket</a>
-                  <a href="#wisata" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#98D8A0] text-base transition-colors hover:scale-105">Wisata</a>
+                <div className="flex flex-col items-center gap-5">
+                  {NAV_ITEMS.map((item, idx) => (
+                    <motion.button
+                      key={item.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.07, duration: 0.3 }}
+                      onClick={() => { scrollToSection(item.id); setMobileMenuOpen(false); }}
+                      className={`text-base font-medium transition-colors ${
+                        activeSection === item.id
+                          ? 'text-[#98D8A0]'
+                          : 'text-white hover:text-[#98D8A0]'
+                      }`}
+                    >
+                      {item.label}
+                    </motion.button>
+                  ))}
                 </div>
               </motion.div>
             )}
@@ -641,7 +712,7 @@ Mohon informasi mengenai ketersediaan dan proposal harga. Terima kasih!`;
 
                     <div className="pt-6 border-t border-gray-100 mt-auto">
                       <div className="font-bold text-[#163a28] text-lg mb-4">{paket.priceText}</div>
-                      <Button onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })} className={`w-full h-12 rounded-xl text-sm font-bold shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 ${paket.highlight ? 'bg-[#163a28] hover:bg-[#0d2618] text-white' : 'bg-[#e8f3ec] text-[#163a28] hover:bg-[#98D8A0] hover:text-[#112419]'}`}>
+                      <Button onClick={() => scrollToSection('hero')} className={`w-full h-12 rounded-xl text-sm font-bold shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95 ${paket.highlight ? 'bg-[#163a28] hover:bg-[#0d2618] text-white' : 'bg-[#e8f3ec] text-[#163a28] hover:bg-[#98D8A0] hover:text-[#112419]'}`}>
                         Pesan Paket Ini
                       </Button>
                     </div>
